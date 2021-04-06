@@ -6,8 +6,8 @@ Product Name:
 
 Non-Functional Requirements:
 
-    1.
-    2.
+    1. The system will be able to manage at least 10 users
+    2. The system will respond to each user input within 5 seconds
     3.
 
 Use Cases:
