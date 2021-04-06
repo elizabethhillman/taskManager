@@ -1,0 +1,37 @@
+#Use Case Description
+Product Name: S.I.T.E
+Problem Statement: S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+ 
+Use Case Name: Log out user
+
+Date: April 5, 2021
+
+##Summary
+The user can log out when done working in the task manager.
+This also ensures no accidental changes happen that can cause the user to miss a task.
+
+##Actors
+1. User 1
+2. User 2
+3. User 3
+
+##Preconditions
+*User must be logged in before they can be logged out
+*Changes should be saved before logging out
+
+##Triggers
+"Log out" is selected by user
+
+##Primary Sequence
+1. Log in
+2. View or edit and save tasks
+3. Log out
+
+##Primary Postconditions
+*A message saying "You have successfully been logged out" is displayed.
+
+##Non-functional Requirements
+
+##Glossary
+user= person using the program
+task manager= program where people can organize and check-off tasks
