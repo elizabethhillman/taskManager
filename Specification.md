@@ -2,7 +2,7 @@ Github URL: https://github.com/elizabethhillman/taskManager
 
 Users: Elizabeth Hillman (elizabethhillman), Isabella Solis (isolis1210), Sungjea Kwak (Jaykkwak), Thien Tran (thientran1999)
 
-Product Name:
+Product Name: S.I.T.E
 
 Non-Functional Requirements:
 
@@ -13,6 +13,64 @@ Non-Functional Requirements:
 Use Cases:
 
     1. Create new task
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Create new task
+
+**Date:** April 6th, 2021
+
+
+\## Summary
+
+The user can create a new task to their task board.
+
+
+\## Actors
+
+1. the user
+2. the task board
+
+\## Preconditions
+
+\* The user must be signed in
+
+\* The task trying to be created should not already exist
+
+
+\## Triggers
+
+User selects "create new task" option
+
+
+\## Primary Sequence
+
+1. System prompts user to detail what the new task is.
+2. User adds in a string of what their task is.
+3. System verifies that this task does not already exist in task board.
+4. The new task is added to the task board, if it doesn't exist. Otherwise, error shows to user that task is already in the task board and nothing happens. 
+ 
+
+\## Primary Postconditions
+
+\* The task is shown on the task board, if the task has not been created yet
+
+**OR** 
+
+\* The task board remains the same, if the task has already been created
+
+
+\## Non-functional Requirements
+
+\* Task board can manage adding a new task, no matter how long the task is 
+
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task board = a system that maintains all of the tasks created by the user 
     
     2. Check and Delete the completed tasks
     
