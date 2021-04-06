@@ -497,14 +497,268 @@ User selects "Create Subtask" option within a task
 		User = a person who want to use this application
 
     11. Log out user
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Log out user
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can log out when done working in the task manager.
+This also ensures no accidental changes happen that can cause the user the miss a task.
+
+\## Actors
+
+1. the user
+
+
+\## Preconditions
+
+\* User must be logged in before they can be logged out.
+
+\* Changes must be saved before logging out
+
+
+\## Triggers
+
+"Log out" is selected by user
+
+
+\## Primary Sequence
+
+1. Log in
+2. view or edit and save tasks
+3. Log out
+
+
+\## Primary Postconditions
+
+\* A message saying "You have successfully been logged out" is displayed
+
+
+\## Non-functional Requirements
+The only option in the task manager once logged out, is to log in.
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
     
     12. Reorder tasks
-    
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Reorder tasks
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can reorder the tasks in their order of importance.
+
+\## Actors
+
+1. the user
+2. the tasks
+
+
+\## Preconditions
+
+\* User must be logged in before they can be logged out.
+
+\* At least two tasks must be in the task manager
+
+
+\## Triggers
+
+
+
+\## Primary Sequence
+
+1. Log in
+2. Create, edit, or reorder tasks
+3. Log out
+
+
+\## Primary Postconditions
+
+\* 
+
+
+\## Non-functional Requirements
+
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
+
+
     13. Reminders
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Reminders
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can receive notification at a specified time before tasks should be started or completed.
+An option for "Add notification __ minutes/hours before start/complete time" will be available.
+The reminder can be sent through an email or SMS 
+
+\## Actor
+
+1. the user
+2. the reminder
+
+
+\## Preconditions
+
+\* The user is logged in
+\* At least one task must be saved in the task manager
+\* Anticipated start and end time should be saved for the task
+\* User must select an amount of time before when they should start or complete a task.
+
+
+\## Triggers
+A timer recognizes that a reminder is set to be sent out.
+
+
+
+\## Primary Sequence
+
+1. Log in
+2. The user sets a reminder
+3. Log out
+4. The task manager will send out a reminder for the set time
+
+
+\## Primary Postconditions
+
+\* A reminder for the task is sent to the user
+
+
+\## Non-functional Requirements
+Task reminders are optional, tasks can be saved without a reminder.
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
+
+\* SMS = short message service, a text to the user
     
     14. Plan for specific days
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Plan for specific days
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can set tasks for days in the future using a built in calendar.
+
+\## Actors
+
+1. the user
+2. the calendar
+
+
+\## Preconditions
+
+\* The user is logged in
+\* At least one task must be saved in the task manager
+
+
+\## Triggers
+
+A date is selected for a task in the future through the calendar option.
+
+
+\## Primary Sequence
+
+1. Log in
+2. Create a task or schedule an existing task for the future.
+
+
+\## Primary Postconditions
+
+\* The scheduled task will be saved for the selected date.
+
+
+\## Non-functional Requirements
+Selecting a date for a task is optional, tasks can be created without a scheduled date.
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
+    
     
     15. Estimate and note time to complete tasks
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Estimate and note time to complete tasks
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can set an estimated time it will take to complete a task.
+This feature can help the user gauge how many tasks they can complete each day.
+
+\## Actors
+
+1. the user
+2. the task manager
+
+
+\## Preconditions
+
+\* At least one task must be saved in the task manager
+\* The user is logged in
+
+
+\## Triggers
+
+An estimated time to complete a task is entered and saved in the "timing" option.
+
+
+\## Primary Sequence
+
+1. Log in
+2. Edit or create a task with an estimated time to complete.
+
+
+\## Primary Postconditions
+
+\* The estimated time to complete the task will be saved and displayed next to the task on the task manager.
+
+
+\## Non-functional Requirements
+Entering an estimated time for a task is optional, tasks can be saved without an estimated time to complete.
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
 
 UML Diagram: 
 ![uml use case (2)](https://user-images.githubusercontent.com/69373637/113670946-91198280-966a-11eb-84f2-f0f51557b602.jpg)
