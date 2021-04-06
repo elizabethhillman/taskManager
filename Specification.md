@@ -262,7 +262,71 @@ User selects "Assign Task" option
     
     
     5. Create Subtask
-    
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Create Subtask
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can add a subtask to an already created task 
+
+
+\## Actors
+
+1. the user
+2. the task
+3. the task board
+
+
+\## Preconditions
+
+\* The user must be signed in
+
+\* The task must exist
+
+
+\## Triggers
+
+User selects "Create Subtask" option within a task
+
+
+\## Primary Sequence
+
+1. System prompts user to detail what the new subtask is
+2. User adds in a string of what their subtask is
+3. System verifies that this subtask does not already exist in task board
+4. The new subtask is added to the task on the task board, if it doesn't already exist. Otherwise, error shows to user that the subtask is already in the task and nothing happens
+
+
+\## Primary Postconditions
+
+\* The subtask is shown on the task, if the subtask has not been created yet
+
+**OR**
+
+\* The task and task board remains the same, if the subtask has already been created
+
+
+\## Non-functional Requirements
+
+\* Task board can manage adding a new subtask, no matter how long the subtask is.
+
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task = an object that exists within the task board
+
+\* subtask = an object that exists within the task
+
+\* task board = a system that maintains all of the tasks created by the user 
+  
+  
     6. Create task categories
 		**Product Name: S.I.T.E
 		**Problem Statement:**
