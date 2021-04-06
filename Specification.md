@@ -72,6 +72,7 @@ User selects "create new task" option
 
 \* task board = a system that maintains all of the tasks created by the user 
     
+    
     2. Remove completed tasks
 **Product Name:** S.I.T.E
 
@@ -130,7 +131,64 @@ User selects "Completed task" option
 
 \* task = an object that was created by the user and stored on the task board
     
+    
     3. Invite other users to “task board”
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Invite other user to personal task board
+
+**Date:** April 6th, 2021
+
+
+\## Summary
+
+The user can invite another user to their task board, so that they can both see and edit the same task board
+
+
+\## Actors
+
+1. the user
+2. the invited user
+3. the task board
+
+ 
+\## Preconditions
+
+\* The user must be signed in
+
+
+\## Triggers
+
+User selects "Invite Collaborator" option
+
+
+\## Primary Sequence
+ 
+1. User inputs the email of the user they want to invite
+3. The invited user joins the task board of the user
+4. Both the user and invited user can view and edit the task board
+
+
+\## Primary Postconditions
+
+\* The user and invited user can view and edit the same task board
+
+
+\## Non-functional Requirements
+
+\* The user will be able to send an invite to a collaborator within 5 seconds. 
+
+ 
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* invited user = a person who is a collaborator on a task board created by the user
+
+\* task board = a system that maintains all of the tasks created by the user 
+    
     
     4. Assign Task To Other User In Team
     
