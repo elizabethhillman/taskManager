@@ -13,33 +13,35 @@ Non-Functional Requirements:
 Use Cases:
 
     1.
-
+    
     2.
-
+    
     3.
-
+    
     4.
-
+    
     5.
-
+    
     6.
-
+    
     7.
-
+    
     8.
-
+    
     9.
-
+    
     10.
-
+    
     11.
-
+    
     12.
-
+    
     13.
-
+    
     14.
-
+    
     15.
 
 UML Diagram: 
+
+![uml use case (2)](C:\Users\Thien Tran\Downloads\uml use case (2).jpg)
