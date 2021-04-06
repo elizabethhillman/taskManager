@@ -761,4 +761,4 @@ Entering an estimated time for a task is optional, tasks can be saved without an
 \* task = an object that exists within the task board
 
 UML Diagram: 
-![uml use case (2)](https://user-images.githubusercontent.com/69373637/113670946-91198280-966a-11eb-84f2-f0f51557b602.jpg)
+![uml use case (3)](https://user-images.githubusercontent.com/69373637/113790637-a0461200-96f6-11eb-8a0f-2d9d83c952c1.jpg)
