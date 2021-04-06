@@ -43,5 +43,4 @@ Use Cases:
     15.
 
 UML Diagram: 
-
-![uml use case (2)](C:\Users\Thien Tran\Downloads\uml use case (2).jpg)
+![uml use case (2)](https://user-images.githubusercontent.com/69373637/113670946-91198280-966a-11eb-84f2-f0f51557b602.jpg)
