@@ -6,9 +6,9 @@ Product Name: S.I.T.E
 
 Non-Functional Requirements:
 
-    1. The system will be able to manage at least 10 users
+    1. The system will be able to manage at least 10 tasks on a task board
     2. The system will respond to each user input within 5 seconds
-    3.
+    3. The system will be able to manage at least one collaborator on a user's task board
 
 Use Cases:
 
@@ -191,6 +191,75 @@ User selects "Invite Collaborator" option
     
     
     4. Assign Task To Other User In Team
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Assign Task to certain user collaborating on a task board
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user and collaborator on a task board can assign a task to be completed by any of the customers on the task board
+
+
+\## Actors
+
+1. the user
+2. the collaborator
+3. the assigned customer
+4. the task board
+
+
+\## Preconditions
+
+\* The user must be signed in
+
+\* There must be a collaborator on the task board
+
+\* The task needs to exist 
+
+
+\## Triggers
+
+User selects "Assign Task" option
+
+
+\## Primary Sequence
+
+1. User or collaborator chooses a task that needs to be assigned
+2. User or collaborator chooses who is the assigned customer
+3. The task board verifies that the assigned customer is either the user or a collaborator on the task board
+4. The task is marked that it is assigned to the assigned customer
+
+
+\## Primary Postconditions
+
+\* The task is marked as assigned to either the user or a collaborator, if that customer is indeed the user or a collaborator on the task board
+
+**OR**
+
+\* An error appears to customer trying to assign the task that the assigned customer does not exist on the task board
+
+
+\## Non-functional Requirements
+
+\* The task will show who is the assigned customer within 5 seconds 
+
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* collaborator = a person who can view and edit the task board of a user
+
+\* assigned customer = either the user or collaborator that is assigned the task
+
+\* task = an object that exists within the task board
+
+\* task board = a system that maintains all of the tasks created by the user 
+    
     
     5. Create Subtask
     
