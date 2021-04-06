@@ -72,7 +72,63 @@ User selects "create new task" option
 
 \* task board = a system that maintains all of the tasks created by the user 
     
-    2. Check and Delete the completed tasks
+    2. Remove completed tasks
+**Product Name:** S.I.T.E
+
+**Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
+**Use Case Name:** Remove completed tasks
+
+**Date:** April 6th, 2021
+
+\## Summary
+
+The user can remove a task they completed
+
+
+\## Actors
+
+1. the user
+2. the task board
+3. the task
+
+
+\## Preconditions
+
+\* The user must be signed in
+
+\* The task must exist on the task board
+
+
+\## Triggers
+
+User selects "Completed task" option
+
+
+\## Primary Sequence
+
+1. User locates the task they completed 
+2. User marks that they completed that task
+3. System removes the task from the task board
+
+
+\## Primary Postconditions
+
+\* The task is no longer shown on the task board
+
+
+\## Non-functional Requirements
+
+\* The task will be removed from the task board within 5 seconds of user marking that the task was completed.
+
+
+\## Glossary
+
+\* user = a person who wants to create a new task
+
+\* task board = a system that maintains all of the tasks created by the user 
+
+\* task = an object that was created by the user and stored on the task board
     
     3. Invite other users to “task board”
     
