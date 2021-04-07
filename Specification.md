@@ -342,44 +342,56 @@ User selects "Create Subtask" option within a task
 	
 	
 \## Actors
+
 \*User of this application
 
 
 \## Preconditions
+
 \*The user has logged in.
+
 \*The task was created 
 
 
 \## Triggers
+
 Select category button or create new category button by user.
 
 
 \## Primary Sequence
+
 1. The user places the task in the desired category.
 
 
 \## Primary Postconditions
+
 1. The system categorizes tasks according to the categories that the user creates.
 2. The user can view tasks by category.
 
 \## Alternate Trigger
+
 \*User selects the create new category button.
 
 
 \## Alternate Sequences
+
 \*If the user does not have the desired category, the user creates a new category.
 
 
 \## Alternate Postconditions
+
 \*A new category is created in the category list.
 
 
 \## Non-functional Requirements
+
 \*Users can create at least 5 categories.
 
 
 \## Glossary
+
 \*User = a person who want to classify the tasks
+
 \*Category = division tasks that have shared characteristics by user.
     
     
@@ -398,31 +410,40 @@ Select category button or create new category button by user.
 	
 	
 \## Actors
+
 \*User of this application
 
 \## Preconditions
+
 \*The user has logged in.
+
 \*The task was created.
 
 
 \## Triggers
+
 \*Select a number to set a priority for the user.
 
 
 \## Primary Sequence
+
 1. The user sets priority 1 to 5 (1 is highest priority)
 
 
 \## Primary Postconditions
+
 \*The system lists the tasks according to their priority highest to lowest.
 
 
 \## Non-functional Requirements
+
 \*System can manage having a priority for all tasks
 
 
 \## Glossary
+
 \*User = a person who wants to set priority for each tasks
+
 \*Priority = The user sets the task to a higher priority if it is important by the user's criteria. 1 is highest priority and 5 is lowest priority.
 
 
@@ -441,18 +462,22 @@ Users can use this feature to change their passwords. This function is used when
 
 
 \## Actors
+
 \*User of this application
 
 
 \## Preconditions
+
 \*The user has already registered with this application server.
 
 
 \## Triggers
+
 \*Select the button to change the password by user.
 
 
 \## Primary Sequence
+
 1. The user presses the password change button.
 2. The user writes the registered he/her email.
 3. The system sends a link to the new password to the email you registered.
@@ -461,28 +486,35 @@ Users can use this feature to change their passwords. This function is used when
 
 
 \## Primary Postconditions
+
 \*Users can log in using the new password they changed.
+
 \*The new password is saved in the system
 
 
 \## Alternate Sequences
+
 1. Shows an error message when a user enters an email that is not registered on the server.
 2. Users can register as new users.
 
 
 \## Alternate Trigger
+
 \*Select button to register new user by user.
 
 
 \## Alternate Postconditions
+
 \*Users are registered as new users on the server.
 
 
 \## Non-functional Requirements
+
 \*The system can manage any length password.
 
 
 \## Glossary
+
 \*User = a person who wants to change a new password.
 
 
@@ -501,44 +533,54 @@ Users must log in to use this application. If you have never used this applicati
 	
 	
 \## Actors
+
 \*New user
 
 
 \## Preconditions
+
 \*Users should never have used or registered this application.
 
 
 \## Triggers
+
 \*Select button to register new user by user.
 
 
 \## Primary Sequence
+
 1. The user presses the Register button to register as a new user.
 2. The user registers their names, emails, and passwords.
 3. The user presses the submit button.
 
 
 \## Primary Postconditions
+
 \*User's data is saved in the system
 
 
 \## Alternate Sequences
+
 1. If the user has already registered an email on the server, the error message displays to the user.
 2. The system guides the user through the process of finding a password if the user forgot his/her password.
 
 
 \### Alternate Trigger
+
 \*Select the button to change the password by user.
 
 
 \### Alternate Postconditions
+
 \*Users can log in using the new password they changed.
 
 
 \## Non-functional Requirements
+
 \*The system can manage any length password
 
 \## Glossary
+
 \*New users = A person who has never used this application or has not registered with the server as a new user.
 
 
@@ -556,27 +598,33 @@ Users must log in to use this application. By logging in, the application can re
 
 
 \## Actors
+
 \*User of this application
 
 
 \## Preconditions
+
 \*The user must be registered with the application server.
 
 
 \## Triggers
+
 \*"Log in" is selected by user
 
 
 \## Primary Sequence
+
 1. The user clicks the login button.
 2. Users enter their email and password and select the submit button.
 
 
 \## Primary Postconditions
+
 \*User can see their task list.
 
 
 \## Alternate Sequences
+
 1. The system displays error messages when the user input the wrong password or not registered email.
 2. The user returns to the login page and enters the information again.
 3. If the user does not remember the password, the user will be guided to “change password uscase”.
@@ -584,18 +632,23 @@ Users must log in to use this application. By logging in, the application can re
 
 
 \### Alternate Trigger
+
 \*“Change password” or “New register” is selected by user
 
 
 \### Alternate Postconditions
+
 \*Users can log in using the new password they changed.
+
 \*If a user registers a new user, the user can use this application. The user can create a task list or be invited by someone else.
 
 
 \## Non-functional Requirements
+
 \*The system can manage any length password
 
 \## Glossary
+
 \*User = a person who want to use this application
 
 
