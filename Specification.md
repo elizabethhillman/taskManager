@@ -329,8 +329,11 @@ User selects "Create Subtask" option within a task
   
     6. Create task categories
 **Product Name:** S.I.T.E
+
 **Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
 **Use Case Name:** Create task categories
+
 **Date:** 4/5/2021
 
 
@@ -382,9 +385,13 @@ Select category button or create new category button by user.
     
     7. Giving priority to certain task
 **Product Name:** S.I.T.E
+
 **Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
 **Use Case Name:** Giving priority to certain task
+
 **Date:** 4/5/2021
+
 
 \## Summary
 	Entering many tasks makes it difficult for users to determine which task to start with. In addition, users cannot perform multiple tasks at once. Therefore, users can prioritize tasks based on user criteria to perform important tasks first. The system first lists tasks with high priority according to user-defined priorities.
@@ -421,8 +428,11 @@ Select category button or create new category button by user.
 
     8. Change password
 **Product Name:** S.I.T.E
+
 **Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take
+
 **Use Case Name:** Change password
+
 **Date:** 4/5/2021
 
 
@@ -478,8 +488,11 @@ Users can use this feature to change their passwords. This function is used when
 
     9. Register new user
 **Product Name:** S.I.T.E
+
 **Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
 **Use Case Name:** Register new user
+
 **Date:** 4/5/2021
 
 
@@ -531,8 +544,11 @@ Users must log in to use this application. If you have never used this applicati
 
     10. Login user
 **Product Name:** S.I.T.E
+
 **Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+
 **Use Case Name:** Login user
+
 **Date:** 4/5/2021
 
 \## Summary
