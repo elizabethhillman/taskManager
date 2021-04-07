@@ -328,173 +328,260 @@ User selects "Create Subtask" option within a task
   
   
     6. Create task categories
-		**Product Name: S.I.T.E
-		**Problem Statement:**
-		SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
-		**Use Case Name:**
-		Create task categories
-		**Date:**
-		4/5/2021
-		## Summary
-		User can edit category functions when creating or editing tasks. The user can organize and view tasks of the same classification by using this category feature. If a user does not have the desired category, the user can create and classify the desired category.
-		## Actors
-		*User of this application
-		## Preconditions
-		*The user has logged in.
-		*The task was created or be created.
-		## Triggers
-		Select category button or create new category button by user.
-		## Primary Sequence
-		1. User create or edit tasks.
-		2. The user places the task in the category that the user wants.
-		## Primary Postconditions
-		1. The system categorizes tasks according to the categories that you create.
-		2. The user can view tasks categorized by category.
-		3. The systems are listed by priority when classifying them into categories.
-		## Alternate Sequences
-		*If the user does not have the desired category, the user creates a new category.
-		### Alternate Trigger
-		*Select the create new category button by user.
-		### Alternate Postconditions
-		*A new category is created in the category list.
-		## Non-functional Requirements
-		*Users can create up to 10 categories.
-		## Glossary
-		*User = a person who want to classify the tasks
-		*Category = division tasks that have shared characteristics by user.
+**Product Name:** S.I.T.E
+**Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+**Use Case Name:** Create task categories
+**Date:** 4/5/2021
+
+
+\## Summary
+	User can edit category functions when creating or editing tasks. The user can organize and view tasks of the same classification by using this category feature. If a user does not have the desired category, the user can create and classify the desired category.
+	
+	
+\## Actors
+\*User of this application
+
+
+\## Preconditions
+\*The user has logged in.
+\*The task was created 
+
+
+\## Triggers
+Select category button or create new category button by user.
+
+
+\## Primary Sequence
+1. The user places the task in the desired category.
+
+
+\## Primary Postconditions
+1. The system categorizes tasks according to the categories that the user creates.
+2. The user can view tasks by category.
+
+\## Alternate Trigger
+\*User selects the create new category button.
+
+
+\## Alternate Sequences
+\*If the user does not have the desired category, the user creates a new category.
+
+
+\## Alternate Postconditions
+\*A new category is created in the category list.
+
+
+\## Non-functional Requirements
+\*Users can create at least 5 categories.
+
+
+\## Glossary
+\*User = a person who want to classify the tasks
+\*Category = division tasks that have shared characteristics by user.
+    
     
     7. Giving priority to certain task
-    	**Product Name: S.I.T.E
-		**Problem Statement:**
-		SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
-		**Use Case Name:**
-		Giving priority to certain task
-		**Date:**
-		 4/5/2021
-		## Summary
-		Entering many tasks makes it difficult for users to determine which task to start with. In addition, users cannot perform multiple tasks at once. Therefore, users can prioritize tasks based on user criteria to perform important tasks first. The system first lists tasks with high priority according to user-defined priorities.
-		## Actors
-		*User of this application
-		## Preconditions
-		*The user has logged in.
-		*The task was created or be created.
-		## Triggers
-		*Select a number to set a priority for the user.
-		## Primary Sequence
-		1. The user creates or edits tasks.
-		2. The user sets priority 1 to 5 (1 is highest priority)
-		## Primary Postconditions
-		*The system lists the tasks according to their priority highest to lowest.
-		## Non-functional Requirements
-		*Priority can only be adjusted by one of the users.
-		## Glossary
-		*User = a person who wants to set priority for each tasks
-		*Priority = The user sets the task to a higher priority if it is important   by the user's criteria. 1 is highest priority and 5 is lowest priority.
+**Product Name:** S.I.T.E
+**Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+**Use Case Name:** Giving priority to certain task
+**Date:** 4/5/2021
+
+\## Summary
+	Entering many tasks makes it difficult for users to determine which task to start with. In addition, users cannot perform multiple tasks at once. Therefore, users can prioritize tasks based on user criteria to perform important tasks first. The system first lists tasks with high priority according to user-defined priorities.
+	
+	
+\## Actors
+\*User of this application
+
+\## Preconditions
+\*The user has logged in.
+\*The task was created.
+
+
+\## Triggers
+\*Select a number to set a priority for the user.
+
+
+\## Primary Sequence
+1. The user sets priority 1 to 5 (1 is highest priority)
+
+
+\## Primary Postconditions
+\*The system lists the tasks according to their priority highest to lowest.
+
+
+\## Non-functional Requirements
+\*System can manage having a priority for all tasks
+
+
+\## Glossary
+\*User = a person who wants to set priority for each tasks
+\*Priority = The user sets the task to a higher priority if it is important by the user's criteria. 1 is highest priority and 5 is lowest priority.
+
 
     8. Change password
-		**Product Name: S.I.T.E
-		**Problem Statement:**
-		SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take
-		**Use Case Name:**
-		Change password
-		**Date:**
-		 4/5/2021
-		## Summary
-		Users can use this feature to change their passwords. This function is used when a user forgets a password or wants to change a new password.
-		## Actors
-		*User of this application
-		## Preconditions
-		*The user has already registered with this application server.
-		## Triggers
-		*Select the button to change the password by user.
-		## Primary Sequence
-		1. The user presses the password change button.
-		2. The user writes the registered he/her email.
-		3. The system sends a link to the new password to the email you registered.
-		4. The link guides the user to a screen where the user can change a new password.
-		5. The user logs in using the new password.
-		## Primary Postconditions
-		*Users can log in using the new password they changed.
-		## Alternate Sequences
-		1. Shows an error message when a user enters an email that is not registered on the server.
-		2. Users can register as new users.
-		### Alternate Trigger
-		*Select button to register new user by user.
-		### Alternate Postconditions
-		*Users are registered as new users on the server.
-		## Non-functional Requirements
-		*The user must have at least 12 digits of the password.
-		## Glossary
-		*User = a person who wants to change a new password.
+**Product Name:** S.I.T.E
+**Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take
+**Use Case Name:** Change password
+**Date:** 4/5/2021
+
+
+\## Summary
+Users can use this feature to change their passwords. This function is used when a user forgets a password or wants to change a new password.
+
+
+\## Actors
+\*User of this application
+
+
+\## Preconditions
+\*The user has already registered with this application server.
+
+
+\## Triggers
+\*Select the button to change the password by user.
+
+
+\## Primary Sequence
+1. The user presses the password change button.
+2. The user writes the registered he/her email.
+3. The system sends a link to the new password to the email you registered.
+4. The link guides the user to a screen where the user can change a new password.
+5. The user logs in using the new password.
+
+
+\## Primary Postconditions
+\*Users can log in using the new password they changed.
+\*The new password is saved in the system
+
+
+\## Alternate Sequences
+1. Shows an error message when a user enters an email that is not registered on the server.
+2. Users can register as new users.
+
+
+\## Alternate Trigger
+\*Select button to register new user by user.
+
+
+\## Alternate Postconditions
+\*Users are registered as new users on the server.
+
+
+\## Non-functional Requirements
+\*The system can manage any length password.
+
+
+\## Glossary
+\*User = a person who wants to change a new password.
+
 
     9. Register new user
-		**Product Name: S.I.T.E
-		**Problem Statement:**
-		SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
-		**Use Case Name:**
-		Register new user
-		**Date:**
-		 4/5/2021
-		## Summary
-		Users must log in to use this application. If you have never used this application, the user should register with the server as a new user. Users must register their names, emails, and passwords when registering as new users. 
-		## Actors
-		*New user
-		## Preconditions
-		*Users should never have used or registered this application.
-		## Triggers
-		*Select button to register new user by user.
-		## Primary Sequence
-		1. The user presses the Register button to register as a new user.
-		2. The user registers their names, emails, and passwords.
-		3. The user presses the submit button.
-		## Primary Postconditions
-		*After registering a new user, the user can use this application. The user can create a task list or be invited by someone else.
-		## Alternate Sequences
-		1. If the user has already registered an email on the server, the error message displays to the user.
-		2. The system guides the user through the process of finding a password if the user forgot his/her password.
-		### Alternate Trigger
-		*Select the button to change the password by user.
-		### Alternate Postconditions
-		*Users can log in using the new password they changed.
-		## Non-functional Requirements
-		*New users must have at least 12 digits of the password.
-		## Glossary
-		*New users = A person who has never used this application or has not registered with the server as a new user.
+**Product Name:** S.I.T.E
+**Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+**Use Case Name:** Register new user
+**Date:** 4/5/2021
+
+
+\## Summary
+Users must log in to use this application. If you have never used this application, the user should register with the server as a new user. Users must register their names, emails, and passwords when registering as new users. 
+	
+	
+\## Actors
+\*New user
+
+
+\## Preconditions
+\*Users should never have used or registered this application.
+
+
+\## Triggers
+\*Select button to register new user by user.
+
+
+\## Primary Sequence
+1. The user presses the Register button to register as a new user.
+2. The user registers their names, emails, and passwords.
+3. The user presses the submit button.
+
+
+\## Primary Postconditions
+\*User's data is saved in the system
+
+
+\## Alternate Sequences
+1. If the user has already registered an email on the server, the error message displays to the user.
+2. The system guides the user through the process of finding a password if the user forgot his/her password.
+
+
+\### Alternate Trigger
+\*Select the button to change the password by user.
+
+
+\### Alternate Postconditions
+\*Users can log in using the new password they changed.
+
+
+\## Non-functional Requirements
+\*The system can manage any length password
+
+\## Glossary
+\*New users = A person who has never used this application or has not registered with the server as a new user.
+
 
     10. Login user
-		**Product Name: S.I.T.E
-		**Problem Statement:**
-		SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
-		**Use Case Name:**
-		Login user
-		**Date:**
-		 4/5/2021
-		## Summary
-		Users must log in to use this application. By logging in, the application can retrieve information and history of users registered on the server. 
-		## Actors
-		*User of this application
-		## Preconditions
-		*The user must be registered with the application server.
-		## Triggers
-		*"Log in" is selected by user
-		## Primary Sequence
-		1. The user clicks the login button.
-		2. Users enter their email and password and select the submit button.
-		## Primary Postconditions
-		*User can see their task list.
-		## Alternate Sequences
-		1. The system displays error messages when the user input the wrong password or not registered email.
-		2. The user returns to the login page and enters the information again.
-		3. If the user does not remember the password, the user will be guided to “change password uscase”.
-		4. If the user have not registered, the user will be guided to “Register new user”
-		### Alternate Trigger
-		*“Change password” or “New register” is selected by user
-		### Alternate Postconditions
-		*Users can log in using the new password they changed.
-		*If a user registers a new user, the user can use this application. The user can create a task list or be invited by someone else.
-		## Non-functional Requirements
-		## Glossary
-		User = a person who want to use this application
+**Product Name:** S.I.T.E
+**Problem Statement:** SITE is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
+**Use Case Name:** Login user
+**Date:** 4/5/2021
+
+\## Summary
+Users must log in to use this application. By logging in, the application can retrieve information and history of users registered on the server. 
+
+
+\## Actors
+\*User of this application
+
+
+\## Preconditions
+\*The user must be registered with the application server.
+
+
+\## Triggers
+\*"Log in" is selected by user
+
+
+\## Primary Sequence
+1. The user clicks the login button.
+2. Users enter their email and password and select the submit button.
+
+
+\## Primary Postconditions
+\*User can see their task list.
+
+
+\## Alternate Sequences
+1. The system displays error messages when the user input the wrong password or not registered email.
+2. The user returns to the login page and enters the information again.
+3. If the user does not remember the password, the user will be guided to “change password uscase”.
+4. If the user have not registered, the user will be guided to “Register new user”
+
+
+\### Alternate Trigger
+\*“Change password” or “New register” is selected by user
+
+
+\### Alternate Postconditions
+\*Users can log in using the new password they changed.
+\*If a user registers a new user, the user can use this application. The user can create a task list or be invited by someone else.
+
+
+\## Non-functional Requirements
+\*The system can manage any length password
+
+\## Glossary
+\*User = a person who want to use this application
+
 
     11. Log out user
 **Product Name:** S.I.T.E
@@ -529,9 +616,8 @@ This also ensures no accidental changes happen that can cause the user the miss 
 
 \## Primary Sequence
 
-1. Log in
-2. view or edit and save tasks
-3. Log out
+1. save tasks
+2. Select trigger
 
 
 \## Primary Postconditions
@@ -580,9 +666,10 @@ The user can edit tasks if they find they miswrote something or if they realize 
 
 \## Primary Sequence
 
-1. Log in
-2. Create, edit, or reorder tasks
-3. Log out
+1. User chooses the task they want to edit
+2. Select the trigger
+3. Change the task
+4. Save changes
 
 
 \## Primary Postconditions
@@ -591,7 +678,7 @@ The user can edit tasks if they find they miswrote something or if they realize 
 
 
 \## Non-functional Requirements
-
+\*The system will save the edit of a task within 5 seconds
 
 \## Glossary
 
@@ -612,8 +699,7 @@ The user can edit tasks if they find they miswrote something or if they realize 
 \## Summary
 
 The user can receive notification at a specified time before tasks should be started or completed.
-An option for "Add notification __ minutes/hours before start/complete time" will be available.
-The reminder can be sent through an email or SMS 
+
 
 \## Actor
 
@@ -630,16 +716,16 @@ The reminder can be sent through an email or SMS
 
 
 \## Triggers
-A timer recognizes that a reminder is set to be sent out.
-
+\*User selects "Add notification"  
 
 
 \## Primary Sequence
 
-1. Log in
-2. The user sets a reminder
-3. Log out
-4. The task manager will send out a reminder for the set time
+1. The user sets a reminder
+3. The user is promted to add the minutes/hours before they want to be reminded 
+4. The user selects when they want to be reminded
+5. The user is promted to add if they want the reminder to be when they should start or complete the task
+6. The user selects an option
 
 
 \## Primary Postconditions
@@ -656,7 +742,6 @@ Task reminders are optional, tasks can be saved without a reminder.
 
 \* task = an object that exists within the task board
 
-\* SMS = short message service, a text to the user
     
     14. Plan for specific days
 **Product Name:** S.I.T.E
@@ -742,9 +827,9 @@ An estimated time to complete a task is entered and saved in the "timing" option
 
 \## Primary Sequence
 
-1. Log in
-2. Edit or create a task with an estimated time to complete.
-
+1. User chooses the task they want to add a time to
+2. User is prompted to add how long the task should take or when they want to complete it
+3. User enters data
 
 \## Primary Postconditions
 
@@ -761,6 +846,5 @@ Entering an estimated time for a task is optional, tasks can be saved without an
 \* task = an object that exists within the task board
 
 UML Diagram: 
-![uml use case (1)](https://user-images.githubusercontent.com/69373637/113933500-86b1d280-97a9-11eb-8e8d-a5e0602c893b.jpg)
-
+![uml use case](https://user-images.githubusercontent.com/69373637/113817512-4ca1eb80-972b-11eb-90de-4c29b78dc87e.jpg)
 
