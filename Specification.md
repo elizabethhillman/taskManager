@@ -548,18 +548,18 @@ The only option in the task manager once logged out, is to log in.
 
 \* task = an object that exists within the task board
     
-    12. Reorder tasks
+    12. Edit tasks
 **Product Name:** S.I.T.E
 
 **Problem Statement:** S.I.T.E is a task manager where users can keep track of daily tasks: sorting the tasks by their priority, category and how long they will take.
 
-**Use Case Name:** Reorder tasks
+**Use Case Name:** Edit tasks
 
-**Date:** April 6th, 2021
+**Date:** April 7th, 2021
 
 \## Summary
 
-The user can reorder the tasks in their order of importance.
+The user can edit tasks if they find they miswrote something or if they realize their task is not what it initially was.
 
 \## Actors
 
@@ -569,14 +569,14 @@ The user can reorder the tasks in their order of importance.
 
 \## Preconditions
 
-\* User must be logged in before they can be logged out.
+\* User must be logged in.
 
-\* At least two tasks must be in the task manager
+\* At least one task must be in the task manager
 
 
 \## Triggers
 
-
+"Edit" is selected
 
 \## Primary Sequence
 
@@ -587,7 +587,7 @@ The user can reorder the tasks in their order of importance.
 
 \## Primary Postconditions
 
-\* 
+\* The tasks edits will be saved.
 
 
 \## Non-functional Requirements
