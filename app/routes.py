@@ -1,12 +1,13 @@
+from app import db
+from app import app
 from flask import render_template, flash, redirect
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
+from app.forms import LoginForm, SignupForm
+from app.models import User, Post
 
-from app import app
-from app.forms import LoginForm
-
-from app.models import User
+db.create_all()
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -48,7 +49,19 @@ def req():
     </body>
     </html>'''
 
-@app.route("/signup", methods = ["POST"])
-    def signup():
-        form = SignupForm()
+@app.route("/signup", methods = ["GET", "POST"])
+def signup():
+    form = SignupForm()
+    if form.validate_on_submit():
+        exiting_user = User.query.filter_by(username=form.username.data).first()
+        if exiting_user is None:
+            newuser = User(username=form.username.data, email=form.email.data, password = form.password.data)
+            db.session.add(newuser)
+            db.session.commit()
+        else:
+            return f'''<html><body>
+                        {form.username.data} already exixt
+                        <a href="">Login</a>
+                        </body>
+                        </html>'''
     return render_template('signup.html', title='Sign up', form=form)
