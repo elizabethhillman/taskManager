@@ -47,3 +47,8 @@ def req():
     User needs to be logged in
     </body>
     </html>'''
+
+@app.route("/signup", methods = ["POST"])
+    def signup():
+        form = SignupForm()
+    return render_template('signup.html', title='Sign up', form=form)
