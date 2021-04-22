@@ -6,7 +6,7 @@ from flask_login import login_required
 from app import app
 from app.forms import LoginForm
 
-from app.models import User
+#from app.models import User
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
