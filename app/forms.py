@@ -17,3 +17,7 @@ class ChangePasswordForm(FlaskForm):
     oldpassword = PasswordField('Old Password', validators=[DataRequired()])
     newpassword = PasswordField('New Password', validators=[DataRequired()])
     submit = SubmitField('Save Change')
+
+class NewTask(FlaskForm):
+    addtask = StringField('New Task', validators=[DataRequired()])
+    submit = SubmitField('Add')

@@ -4,9 +4,12 @@ from flask import render_template, flash, redirect
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
-from app.forms import LoginForm, SignupForm, ChangePasswordForm
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask
 from app.models import User, Post
 
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -69,9 +72,9 @@ def signup():
 
 @app.route('/changepassword', methods = ['GET', 'POST'])
 def changepassword():
+    user = current_user
     form = ChangePasswordForm()
     if form.validate_on_submit():
-        user = current_user
         oldpassword = User.query.filter_by(password = form.oldpassword.data).first()
         if oldpassword is None or not oldpassword.check_password(form.oldpassword.data):
             flash('Wrong password')
@@ -83,3 +86,9 @@ def changepassword():
             flash('Successful Change Password')
             return redirect('/changepassword')
     return render_template('changepassword.html', title = 'Change password', form=form)
+
+# @app.route('/newtask', methods = ['GET', 'POST'])
+# def newtask():
+#     user = current_user
+#     form = NewTask()
+#     if form.validate_on_submit():
