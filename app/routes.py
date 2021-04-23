@@ -55,7 +55,8 @@ def signup():
     if form.validate_on_submit():
         exiting_user = User.query.filter_by(username=form.username.data).first()
         if exiting_user is None or not exiting_user.check_username(form.username.data):
-            newuser = User(username=form.username.data, email=form.email.data, password = form.password.data)
+            password = exiting_user.set_password(form.password.data)
+            newuser = User(username=form.username.data, email=form.email.data, password = password )
             db.session.add(newuser)
             db.session.commit()
         else:
