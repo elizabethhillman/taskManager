@@ -4,10 +4,10 @@ from flask import render_template, flash, redirect
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
-from app.forms import LoginForm, SignupForm
+from app.forms import LoginForm, SignupForm, ChangePasswordForm
 from app.models import User, Post
 
-db.create_all()
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -54,7 +54,7 @@ def signup():
     form = SignupForm()
     if form.validate_on_submit():
         exiting_user = User.query.filter_by(username=form.username.data).first()
-        if exiting_user is None:
+        if exiting_user is None or not exiting_user.check_username(form.username.data):
             newuser = User(username=form.username.data, email=form.email.data, password = form.password.data)
             db.session.add(newuser)
             db.session.commit()
@@ -65,3 +65,20 @@ def signup():
                         </body>
                         </html>'''
     return render_template('signup.html', title='Sign up', form=form)
+
+@app.route('/changepassword', methods = ['GET', 'POST'])
+def changepassword():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        user = current_user
+        oldpassword = User.query.filter_by(password = form.oldpassword.data).first()
+        if oldpassword is None or not oldpassword.check_password(form.oldpassword.data):
+            flash('Wrong password')
+            return redirect('/changepassword')
+        else:
+            user.password = user.set_password(form.newpassword.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Successful Change Password')
+            return redirect('/changepassword')
+    return render_template('changepassword.html', title = 'Change password', form=form)

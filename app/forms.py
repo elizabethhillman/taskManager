@@ -12,3 +12,8 @@ class SignupForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Sign Up')
+
+class ChangePasswordForm(FlaskForm):
+    oldpassword = PasswordField('Old Password', validators=[DataRequired()])
+    newpassword = PasswordField('New Password', validators=[DataRequired()])
+    submit = SubmitField('Save Change')

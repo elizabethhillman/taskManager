@@ -17,7 +17,10 @@ class User(UserMixin, db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-
+    def check_username(self, username):
+        if username != self.username:
+            return False
+        return True
     def __repr__(self):
         return '<User {}>'.format(self.username)    
         
@@ -34,3 +37,5 @@ class Post(db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
+db.create_all()
+db.session.commit()
