@@ -6,11 +6,13 @@ from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask
+from werkzeug.security import check_password_hash
 from app.models import User, Post
+
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('base.html')
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -77,16 +79,20 @@ def signup():
     return render_template('signup.html', title='Sign up', form=form)
 
 @app.route('/changepassword', methods = ['GET', 'POST'])
+@login_required
 def changepassword():
     user = current_user
+    #print("current pass:" +user.password)
     form = ChangePasswordForm()
     if form.validate_on_submit():
-        oldpassword = User.query.filter_by(password = form.oldpassword.data).first()
-        if oldpassword is None or not oldpassword.check_password(form.oldpassword.data):
-            flash('Wrong password')
+        if not check_password_hash(user.password,form.oldpassword.data):
+            #print(form.oldpassword.data)
+            flash('Invalid password')
             return redirect('/changepassword')
-        else:
-            user.password = user.set_password(form.newpassword.data)
+        if check_password_hash(user.password,form.oldpassword.data):
+            
+            #print(form.newpassword.data)
+            user.password = generate_password_hash(form.newpassword.data)
             db.session.add(user)
             db.session.commit()
             flash('Successful Change Password')
@@ -98,6 +104,12 @@ def changepassword():
 def logout():
     logout_user()
     return redirect("/")
+
+@app.route("/profile")
+@login_required
+def profile():
+    user = current_user
+    return render_template ('profile.html', title = 'My Account')
 
 # @app.route('/newtask', methods = ['GET', 'POST'])
 # def newtask():
