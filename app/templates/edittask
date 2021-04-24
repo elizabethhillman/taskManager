@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Task</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.originaltask.label }}<br>
+            {{ form.originaltask(size=256) }}
+        </p>
+        <p>
+            {{ form.editedtask.label }}<br>
+            {{ form.editedtask(size=256) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
+© 2021 GitHub, Inc
