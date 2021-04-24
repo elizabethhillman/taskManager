@@ -1,9 +1,10 @@
 from app import db
 from app import app
-from flask import render_template, flash, redirect
+from flask import render_template, flash, redirect, request
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
+from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask
 from app.models import User, Post
 
@@ -33,11 +34,10 @@ def login():
         # weren't logged in they would get redirected to login page. After they log in
         # the user will be redirected to their previous request, which would be the profile
         # page in this case.
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
-
-        return redirect(next_page)
+#        next_page = request.args.get('next')
+#        if not next_page or url_parse(next_page).netloc != '':
+#            next_page = url_for('index')
+        return redirect("/")
 
     return render_template('login.html', title='Log In', form=form)
 
@@ -58,16 +58,22 @@ def signup():
     if form.validate_on_submit():
         exiting_user = User.query.filter_by(username=form.username.data).first()
         if exiting_user is None or not exiting_user.check_username(form.username.data):
-            password = exiting_user.set_password(form.password.data)
+            password = generate_password_hash(form.password.data)
             newuser = User(username=form.username.data, email=form.email.data, password = password )
             db.session.add(newuser)
             db.session.commit()
-        else:
             return f'''<html><body>
-                        {form.username.data} already exixt
-                        <a href="">Login</a>
+                        {form.username.data} Successgully Sign Up </b>
+                        <a href="/login">Login</a>
                         </body>
                         </html>'''
+        else:
+            return f'''<html><body>
+                        {form.username.data} already exixt </b>
+                        <a href="/login">Login</a>
+                        </body>
+                        </html>'''
+                        
     return render_template('signup.html', title='Sign up', form=form)
 
 @app.route('/changepassword', methods = ['GET', 'POST'])
@@ -86,6 +92,12 @@ def changepassword():
             flash('Successful Change Password')
             return redirect('/changepassword')
     return render_template('changepassword.html', title = 'Change password', form=form)
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/")
 
 # @app.route('/newtask', methods = ['GET', 'POST'])
 # def newtask():
