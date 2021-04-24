@@ -22,3 +22,7 @@ class ChangePasswordForm(FlaskForm):
 class NewTask(FlaskForm):
     addtask = StringField('New Task', validators=[DataRequired()])
     submit = SubmitField('Add')
+    
+class EditTask(FlaskForm):
+    edittask = StringField('Edit Task', validators=[DataRequired()])
+    submit = StringField('Save')
