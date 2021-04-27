@@ -1,18 +1,28 @@
 from app import db
 from app import app
-from flask import render_template, flash, redirect, request
+from flask import render_template, flash, redirect, request, url_for
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask
 from werkzeug.security import check_password_hash
-from app.models import User, Post
+from app.models import User, Post, Task
 
 
 @app.route('/')
+
 def index():
-    return render_template('base.html')
+    # user = current_user
+    # taskList = (db.session.query(User, Task)
+    #     .join(User)
+    #     ).all()
+
+    tasks = Task.query.all()
+    # for item in taskList:
+    #     #Add the item in the message list into the posts
+    #     tasks.append(item.Task.content)
+    return render_template('index.html', tasks=tasks)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -111,8 +121,43 @@ def profile():
     user = current_user
     return render_template ('profile.html', title = 'My Account')
 
-# @app.route('/newtask', methods = ['GET', 'POST'])
-# def newtask():
+@app.route('/addtask', methods = ['GET', 'POST'])
+@login_required
+def newtask():
+    user = User.query.filter_by(username=current_user.username).first()
+    form = NewTask()
+    #print(user.id)
+    if form.validate_on_submit():
+        
+        content = form.addtask.data
+        task = Task(content)
+        db.session.add(task)
+        db.session.commit()
+        print(task.user_id)
+        return redirect('/')
+    return render_template('addtask.html', title= 'Add task',form = form)
+# @app.route('/delete/<int:task_id>')
+# @login_required
+# def delete_task(task_id):
 #     user = current_user
-#     form = NewTask()
-#     if form.validate_on_submit():
+#     task = Task.query.get(task_id)
+#     if not task:
+#         return redirect('/')
+
+#     db.session.delete(task)
+#     db.session.commit()
+#     return redirect('/')
+# @app.route('/done/<int:task_id>')
+# @login_required
+# def complete(task_id):
+#     task = Task.query.get(task_id)
+#     user = current_user
+#     if not task:
+#         return redirect('/')
+#     if task.done:
+#         task.done = False
+#     else:
+#         task.done = True
+
+#     db.session.commit()
+#     return redirect('/')

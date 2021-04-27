@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-  
+    {% if current_user.is_authenticated %}
+            <div>
+                <h1>Task</h1>
+                {% for task in tasks %}
+                <ul>
+                <li>
+                    {{ task.content }}
+                </li>
+                </ul>
+                {% endfor %}
+                <div>Add a new todo item: 
+                <a href="/addtask"> add</a>
+                </div> 
+            </div>
+    {% endif %}
 {% endblock %}

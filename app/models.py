@@ -11,7 +11,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(200), unique=False)
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
-
+    content = db.relationship('Task', backref='author', lazy='dynamic' )
     def set_password(self, password):
         self.password = generate_password_hash(password)
 
@@ -33,6 +33,20 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
+
+class Task(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.String, unique=False, nullable=False)
+    complete = db.Column(db.Boolean, default=False)
+    
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+   
+    def __init__(self, content):
+        self.content = content
+        self.done = False
+
+    def __repr__(self):
+        return f'<Task: {self.content}>'
 
 @login.user_loader
 def load_user(id):
