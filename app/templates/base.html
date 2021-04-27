@@ -56,7 +56,7 @@
         {% block content %}
              {% if current_user.is_authenticated %}
             <h1> Welcome, {{ current_user.username }}! </h1>
-            <p> Go to My Account to view you account details. Go to My Taskboard to view your current taskboard. Or go to Sign Out to log out</p>
+            <p> Go to My Account to view you account details or change password. Go to My Taskboard to view your current taskboard. Or go to Sign Out to log out</p>
             {% endif %}
         {% endblock %}
     </body>
