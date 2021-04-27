@@ -13,6 +13,9 @@ from app.models import User, Post, Task
 @app.route('/')
 
 def index():
+    return render_template('base.html')
+@app.route('/taskboard',methods=['GET', 'POST'])
+def taskboard():
     # user = current_user
     # taskList = (db.session.query(User, Task)
     #     .join(User)
@@ -23,7 +26,6 @@ def index():
     #     #Add the item in the message list into the posts
     #     tasks.append(item.Task.content)
     return render_template('index.html', tasks=tasks)
-
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -134,7 +136,7 @@ def newtask():
         db.session.add(task)
         db.session.commit()
         print(task.user_id)
-        return redirect('/')
+        return redirect('/taskboard')
     return render_template('addtask.html', title= 'Add task',form = form)
 # @app.route('/delete/<int:task_id>')
 # @login_required
