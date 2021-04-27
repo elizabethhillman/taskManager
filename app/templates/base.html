@@ -30,7 +30,7 @@
                   <a class="nav-link" href="#">Feature</a>
                   {% endif %}
                   {% if current_user.is_authenticated %}
-                  <a class="nav-link" href="#">????</a>
+                  <a class="nav-link" href="#">My Taskboard</a>
                   {% endif %}
                 </li>
                 <li class="nav-item">
@@ -54,6 +54,10 @@
             </div>
           </nav>
         {% block content %}
+             {% if current_user.is_authenticated %}
+            <h1> Welcome, {{ current_user.username }}! </h1>
+            <p> Go to My Account to view you account details. Go to My Taskboard to view your current taskboard. Or go to Sign Out to log out</p>
+            {% endif %}
         {% endblock %}
     </body>
 </html>
