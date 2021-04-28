@@ -25,7 +25,7 @@ def taskboard():
     # for item in taskList:
     #     #Add the item in the message list into the posts
     #     tasks.append(item.Task.content)
-    return render_template('index.html', tasks=tasks)
+    return render_template('taskboard.html', tasks=tasks)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
