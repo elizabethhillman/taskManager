@@ -11,10 +11,10 @@ from app.models import User, Post, Task
 
 
 @app.route('/')
-
 def index():
     return render_template('base.html')
 @app.route('/taskboard',methods=['GET', 'POST'])
+
 def taskboard():
     # user = current_user
     # taskList = (db.session.query(User, Task)
@@ -138,17 +138,16 @@ def newtask():
         print(task.user_id)
         return redirect('/taskboard')
     return render_template('addtask.html', title= 'Add task',form = form)
-# @app.route('/delete/<int:task_id>')
-# @login_required
-# def delete_task(task_id):
-#     user = current_user
-#     task = Task.query.get(task_id)
-#     if not task:
-#         return redirect('/')
+    
+@app.route('/delete/<int:task_id>')
+@login_required
+def delete_task(task_id):
+    task_delete = Task.query.get_or_404(task_id)
+    db.session.delete(task_delete)
+    db.session.commit()
+    return redirect("/taskboard")
 
-#     db.session.delete(task)
-#     db.session.commit()
-#     return redirect('/')
+
 # @app.route('/done/<int:task_id>')
 # @login_required
 # def complete(task_id):
