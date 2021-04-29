@@ -153,13 +153,13 @@ def edit_task(task_id):
     form = EditTask()
     task = Task.query.get(task_id)
     
-    if request.method == 'POST':
-        task.content=form.edittask.data
-        db.session.commit()
-        return redirect('/taskboard')
+    if form.validate_on_submit():
+        if request.method == 'POST':
+            task.content=form.edittask.data
+            db.session.commit()
+            return redirect('/taskboard')
         
-    else:
-        return render_template('edittask.html', title = task.content, form=form)
+    return render_template('edittask.html', title = task.content, form=form)
 
 # @app.route('/done/<int:task_id>')
 # @login_required
