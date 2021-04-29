@@ -159,7 +159,7 @@ def edit_task(task_id):
         return redirect('/taskboard')
         
     else:
-        return render_template('edittask.html', form=form)
+        return render_template('edittask.html', title = task.content, form=form)
 
 # @app.route('/done/<int:task_id>')
 # @login_required

@@ -25,4 +25,4 @@ class NewTask(FlaskForm):
     
 class EditTask(FlaskForm):
     edittask = StringField('Task', validators=[DataRequired()])
-    submit = SubmitField('Edit')
+    submit = SubmitField('Save Changes')
