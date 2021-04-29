@@ -24,5 +24,5 @@ class NewTask(FlaskForm):
     submit = SubmitField('Add')
     
 class EditTask(FlaskForm):
-    edittask = StringField('Edit Task', validators=[DataRequired()])
-    submit = StringField('Save')
+    edittask = StringField('Task', validators=[DataRequired()])
+    submit = SubmitField('Edit')

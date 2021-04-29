@@ -5,7 +5,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task
 
@@ -142,11 +142,24 @@ def newtask():
 @app.route('/delete/<int:task_id>')
 @login_required
 def delete_task(task_id):
-    task_delete = Task.query.get_or_404(task_id)
+    task_delete = Task.query.get(task_id)
     db.session.delete(task_delete)
     db.session.commit()
     return redirect("/taskboard")
 
+@app.route('/edittask/<int:task_id>', methods=['GET', 'POST'])
+@login_required
+def edit_task(task_id):
+    form = EditTask()
+    task = Task.query.get(task_id)
+    
+    if request.method == 'POST':
+        task.content=form.edittask.data
+        db.session.commit()
+        return redirect('/taskboard')
+        
+    else:
+        return render_template('edittask.html', form=form)
 
 # @app.route('/done/<int:task_id>')
 # @login_required

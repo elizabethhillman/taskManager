@@ -5,14 +5,9 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p>
-            {{ form.originaltask.label }}<br>
-            {{ form.originaltask(size=256) }}
-        </p>
-        <p>
-            {{ form.editedtask.label }}<br>
-            {{ form.editedtask(size=256) }}
+            {{ form.edittask.label }}<br>
+            {{ form.edittask(size=256)}}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
-© 2021 GitHub, Inc
