@@ -156,12 +156,14 @@ def edit_task(task_id):
    
 
     if request.method == 'POST':
-        if form.validate_on_submit():
+        if request.form['cancel']:
+            return redirect('/taskboard')
+        elif form.validate_on_submit():
             task.content=form.edittask.data
             db.session.commit()
             return redirect('/taskboard')
-        if request.form['cancel']:
-            return redirect('/taskboard')
+#        if request.form['cancel']:
+#            return redirect('/taskboard')
     return render_template('edittask.html', title = task.content, form=form)
 
 # @app.route('/done/<int:task_id>')
