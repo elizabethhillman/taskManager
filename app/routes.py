@@ -164,7 +164,7 @@ def edit_task(task_id):
             return redirect('/taskboard')
         if request.form['cancel']:
             return redirect('/taskboard')
-    return render_template('edittask.html', title = task.content, form=form)
+    return render_template('edittask.html', task = task.content, form=form)
 
 # @app.route('/done/<int:task_id>')
 # @login_required
