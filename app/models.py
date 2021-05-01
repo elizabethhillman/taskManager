@@ -14,7 +14,7 @@ class User(UserMixin, db.Model):
     content = db.relationship('Task', backref='author', lazy='dynamic' )
     def set_password(self, password):
         self.password = generate_password_hash(password)
-
+        
     def check_password(self, password):
         return check_password_hash(self.password, password)
     def check_username(self, username):
@@ -53,3 +53,8 @@ def load_user(id):
     return User.query.get(int(id))
 db.create_all()
 db.session.commit()
+
+'''
+The code above will store the dictrionaries into their appropriate columns in the database.
+This allows for the other files in this app to return the objects. 
+'''
