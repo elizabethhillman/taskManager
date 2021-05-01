@@ -77,7 +77,7 @@ def signup():
             db.session.add(newuser)
             db.session.commit()
             return f'''<html><body>
-                        {form.username.data} Successgully Sign Up </b>
+                        {form.username.data} Successfully Signed Up </b>
                         <a href="/login">Login</a>
                         </body>
                         </html>'''
