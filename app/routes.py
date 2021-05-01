@@ -166,6 +166,12 @@ def edit_task(task_id):
             return redirect('/taskboard')
     return render_template('edittask.html', task = task.content, form=form)
 
+'''
+Routes.py build on the files forms.py and their html templates. 
+The forms are imported and this code specifies what is a valid input for the forms. 
+This also includes where the user can navigate from each form. 
+'''
+
 # @app.route('/done/<int:task_id>')
 # @login_required
 # def complete(task_id):
