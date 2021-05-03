@@ -1,9 +1,11 @@
 **S.I.T.E**
 
 **Introduction**
+
 This task manager application allows a user to create an account and add tasks to their taskboard that can later be removed once the user completes that task. 
 
 **Installation**
+
 Once the repository is cloned on a users own computer, the website can then be accessed. Make sure that the following are installed:
      * Python v3.9.1
      * Flask
@@ -14,9 +16,11 @@ On your python shell, run the following command:
 After that, a website will be provided that can be copied and ran on any web browser. This will then bring you to S.I.T.E
 
 **How to use S.I.T.E**
+
 When you first open the website, first choose the sign in option and log in with the correct credentials. On this page, there is also a link to register as a new user. From there, you are brought to the dashboard that displays the instructions on how to use S.I.T.E. The "My Account" tab shows you your username and password, as well as an option to change your password. The "My Taskboard" tab brings you to see all of your tasks, as well as creating new ones, editing existing ones and removing completed tasks. Finally, the "Sign out" tab allows the user to sign out of their account and saves all of the tasks.
 
 **Implemented Use Cases**
+
 1. Creating New task
    - To ensure this works, we tried creating multiple tasks to see if they appear. In addition, we made sure that after we sign out and sign back in, that the tasks are still visible.
    
