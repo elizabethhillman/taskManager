@@ -1,4 +1,4 @@
-#**S.I.T.E**#
+**S.I.T.E**
 
 **Introduction**
 
@@ -24,16 +24,26 @@ When you first open the website, first choose the sign in option and log in with
 **Implemented Use Cases**
 
     1. Creating New task
-        - To ensure this works, we tried creating multiple tasks to see if they appear. In addition, we made sure that after we sign out and sign back in, that the tasks are still visible.
+        - To ensure this works, we tried creating multiple tasks to see if they appear. 
+        In addition, we made sure that after we sign out and sign back in, that the tasks 
+        are still visible.
    
     2. Remove Completed Task
-       - To ensure this works, we tried removing existing tasks to make sure they are no longer visible. 
+       - To ensure this works, we tried removing existing tasks to make sure they 
+       are no longer visible. 
  
     3. Edit Task
-       - To ensure this works, after creating a task, we made sure that the task data only shows the changes by the user. We tried logging out and coming signing back in to make sure these changes are saved. We also implemented a 'Cancel' button if the user wishes to no longer edit the task.  
+       - To ensure this works, after creating a task, we made sure that the task data 
+       only shows the changes by the user. We tried logging out and coming signing back 
+       in to make sure these changes are saved. We also implemented a 'Cancel' button 
+       if the user wishes to no longer edit the task.  
   
     4. Register New User
-       - To ensure this works, we created a new user with username "test" and password "1234" and tried logging that account in. 
+       - To ensure this works, we created a new user with username "test" 
+       and password "1234" and tried logging that account in. 
 
     5. Change Password
-       - To ensure this works, we tried changing the password of an existing user and then tried signing them in with the old password to make sure that one did not work. We then tried logging them in with the new password to make sure that would work.  
+       - To ensure this works, we tried changing the password of an existing user 
+       and then tried signing them in with the old password to make sure that one 
+       did not work. We then tried logging them in with the new password to make 
+       sure that would work.  
