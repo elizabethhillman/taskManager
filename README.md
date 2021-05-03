@@ -19,7 +19,7 @@ After that, a website will be provided that can be copied and ran on any web bro
 
 **How to use S.I.T.E**
 
-When you first open the website, first choose the sign in option and log in with the correct credentials. On this page, there is also a link to register as a new user. From there, you are brought to the dashboard that displays the instructions on how to use S.I.T.E. The "My Account" tab shows you your username and password, as well as an option to change your password. The "My Taskboard" tab brings you to see all of your tasks, as well as creating new ones, editing existing ones and removing completed tasks. Finally, the "Sign out" tab allows the user to sign out of their account and saves all of the tasks.
+When you first open the website, first choose the sign in option and log in with the correct credentials. On this page, there is also a link to register as a new user. From there, you are brought to the dashboard that displays the instructions on how to use S.I.T.E. The "My Account" tab shows you your username and email, as well as an option to change your password. The "My Taskboard" tab brings you to see all of your tasks, as well as creating new ones, editing existing ones and removing completed tasks. Finally, the "Sign out" tab allows the user to sign out of their account and saves all of the tasks.
 
 **Implemented Use Cases**
 
