@@ -38,12 +38,15 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, unique=False, nullable=False)
     complete = db.Column(db.Boolean, default=False)
-    
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    priority = db.Column(db.Integer, nullable=False)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
-    def __init__(self, content):
-        self.content = content
-        self.done = False
+    # def __init__(self, content, priority, user_id):
+    #     self.content = content
+    #     self.priority = priority
+    #     self.user_id = user_id
+    #     self.done = False
 
     def __repr__(self):
         return f'<Task: {self.content}>'

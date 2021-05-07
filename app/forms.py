@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, SelectField
 from wtforms.validators import DataRequired, ValidationError
 
 
@@ -21,6 +21,7 @@ class ChangePasswordForm(FlaskForm):
 
 class NewTask(FlaskForm):
     addtask = StringField('New Task', validators=[DataRequired()])
+    priority = SelectField('Priority', choices=[(1, '1'),(2, '2'),(3, '3')], validators=[DataRequired()])
     submit = SubmitField('Add')
     
 class EditTask(FlaskForm):

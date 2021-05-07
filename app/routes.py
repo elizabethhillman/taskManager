@@ -38,8 +38,11 @@ def login():
         # if no user found or password for user incorrect
         # user.check_password() is a method in the User class
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect('/login')
+            return f'''<html><body>
+                        {form.username.data} Invalided username or password</b>
+                        <a href="/login">Login</a>
+                        </body>
+                        </html>'''
         # let flask_login library know what user logged int
         # it also means that their password was correct
         login_user(user)
@@ -130,9 +133,7 @@ def newtask():
     form = NewTask()
     #print(user.id)
     if form.validate_on_submit():
-        
-        content = form.addtask.data
-        task = Task(content)
+        task = Task(content=form.addtask.data, priority=form.priority.data, author=user)
         db.session.add(task)
         db.session.commit()
         print(task.user_id)

@@ -8,6 +8,10 @@
             {{ form.addtask.label }}<br>
             {{ form.addtask(size=300) }}
         </p>
+        <p>
+            {{ form.priority.label }}<br>
+            {{ form.priority() }}
+        </p>
         <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}
