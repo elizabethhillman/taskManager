@@ -3,7 +3,7 @@
 {% block content %}
     {% if current_user.is_authenticated %}
             <div>
-                <h1>Task</h1>
+                <h1>Task</h1>   <a href='/priority'>Sort by priority<a>
                 {% for task in tasks %}
                 <ul>
                 <li>

@@ -167,6 +167,14 @@ def edit_task(task_id):
             return redirect('/taskboard')
     return render_template('edittask.html', task = task.content, form=form)
 
+@app.route('/priority')
+@login_required
+def filter_priority():
+
+    tasks = Task.query.order_by(Task.priority.asc())
+
+    return render_template('taskboard.html', tasks=tasks)
+
 '''
 Routes.py build on the files forms.py and their html templates. 
 The forms are imported and this code specifies what is a valid input for the forms. 
