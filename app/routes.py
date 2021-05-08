@@ -7,7 +7,7 @@ from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask
 from werkzeug.security import check_password_hash
-from app.models import User, Post, Task
+from app.models import User, Post, Task, Category
 
 
 @app.route('/')
@@ -131,6 +131,7 @@ def profile():
 def newtask():
     user = User.query.filter_by(username=current_user.username).first()
     form = NewTask()
+    form.category.choices = [(c.id, c.name) for c in Category.query.all()]
     #print(user.id)
     if form.validate_on_submit():
         task = Task(content=form.addtask.data, priority=form.priority.data, author=user)
