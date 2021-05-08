@@ -29,3 +29,9 @@ class EditTask(FlaskForm):
     edittask = StringField('Task', validators=[DataRequired()])
     submit = SubmitField('Save Changes')
     cancel = SubmitField('Cancel')
+
+class CreateCategory(FlaskForm):
+    addcategory = StringField('Create Category', validators=[DataRequired()])
+    submit = SubmitField('Create')
+
+

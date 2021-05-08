@@ -5,7 +5,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category
 
@@ -131,7 +131,7 @@ def profile():
 def newtask():
     user = User.query.filter_by(username=current_user.username).first()
     form = NewTask()
-    form.category.choices = [(c.id, c.name) for c in Category.query.all()]
+    form.category.choices = [(c.id, c.category) for c in Category.query.all()]
     #print(user.id)
     if form.validate_on_submit():
         task = Task(content=form.addtask.data, priority=form.priority.data, author=user)
@@ -175,6 +175,19 @@ def filter_priority():
     tasks = Task.query.order_by(Task.priority.asc())
 
     return render_template('taskboard.html', tasks=tasks)
+
+@app.route('/createcategory', methods = ['GET', 'POST'])
+@login_required
+def createcategory():
+    user = User.query.filter_by(username=current_user.username).first()
+    form = CreateCategory()
+    if form.validate_on_submit():
+        category = Category(category=form.addcategory.data)
+        db.session.add(category)
+        db.session.commit()
+        return redirect('/taskboard')
+    return render_template('addcategory.html', title= 'Add Category',form = form)
+
 
 '''
 Routes.py build on the files forms.py and their html templates. 
