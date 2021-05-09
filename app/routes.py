@@ -134,7 +134,7 @@ def newtask():
     form.category.choices = [(c.id, c.category) for c in Category.query.all()]
     #print(user.id)
     if form.validate_on_submit():
-        task = Task(content=form.addtask.data, priority=form.priority.data, author=user)
+        task = Task(content=form.addtask.data, priority=form.priority.data, category_id=form.category.data, author=user)
         db.session.add(task)
         db.session.commit()
         print(task.user_id)

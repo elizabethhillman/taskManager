@@ -39,7 +39,9 @@ class Task(db.Model):
     content = db.Column(db.String, unique=False, nullable=False)
     complete = db.Column(db.Boolean, default=False)
     priority = db.Column(db.Integer, nullable=False)
-    category = db.relationship('Category', backref='catecory', lazy='dynamic')
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
+    category = db.relationship('Category', backref=db.backref('categories', lazy=True))
+    
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
@@ -56,8 +58,6 @@ class Task(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(30), unique=True, nullable=False)
-
-    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
 
     def __repr__(self):
         return f'<Category: {self.category}>'
