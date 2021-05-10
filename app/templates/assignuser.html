@@ -1,6 +1,10 @@
 # I was thinking a drop down menu would be best for assigning a user
 # Reference: https://www.w3schools.com/tags/tag_select.asp
 
+{% extends "base.html" %}
+
+{% block content %}
+
 <label for="user">Assign User:</label>
 
 <select name="user" id={{user}}>
@@ -9,3 +13,5 @@
   <option value="mercedes">Mercedes</option>
   <option value="audi">Audi</option>
 </select>
+
+{% endblock %}
