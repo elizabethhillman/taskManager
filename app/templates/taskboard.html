@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/taskboard.css') }}">
     {% if current_user.is_authenticated %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/taskboard.css') }}">
             <div>
                 <h1>Task</h1>   
                 <nav>

@@ -18,7 +18,7 @@ def index():
 def taskboard():
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id).all()
-    categories = Category.query.all()
+    categories = Category.query.filter_by(user_id=user.id).all()
     return render_template('taskboard.html', tasks=tasks, categories=categories)
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -165,7 +165,7 @@ def edit_task(task_id):
 def filter_priority():
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id).order_by(Task.priority.asc())
-    categories = Category.query.all()
+    categories = Category.query.filter_by(user_id=user.id).all()
 
     return render_template('taskboard.html', tasks=tasks, categories=categories)
 
@@ -175,7 +175,7 @@ def createcategory():
     user = User.query.filter_by(username=current_user.username).first()
     form = CreateCategory()
     if form.validate_on_submit():
-        category = Category(category=form.addcategory.data)
+        category = Category(category=form.addcategory.data, author=user)
         db.session.add(category)
         db.session.commit()
         return redirect('/taskboard')
@@ -186,7 +186,7 @@ def createcategory():
 def category(category_id):
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id, category_id=category_id).all()
-    categories = Category.query.all()
+    categories = Category.query.filter_by(user_id=user.id).all()
     return render_template('taskboard.html', tasks=tasks, categories=categories)
 
 

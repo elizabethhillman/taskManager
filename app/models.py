@@ -12,6 +12,8 @@ class User(UserMixin, db.Model):
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     content = db.relationship('Task', backref='author', lazy='dynamic' )
+    category = db.relationship('Category', backref='author', lazy='dynamic')
+
     def set_password(self, password):
         self.password = generate_password_hash(password)
         
@@ -58,6 +60,7 @@ class Task(db.Model):
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category = db.Column(db.String(30), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
         return f'<Category: {self.category}>'
