@@ -17,24 +17,15 @@ def index():
 @app.route('/taskboard',methods=['GET', 'POST'])
 def taskboard():
     user = User.query.filter_by(username=current_user.username).first()
-    # user = current_user
-    # taskList = (db.session.query(User, Task)
-    #     .join(User)
-    #     ).all()
-
     tasks = Task.query.filter_by(user_id=user.id).all()
-    # for item in taskList:
-    #     #Add the item in the message list into the posts
-    #     tasks.append(item.Task.content)
-    return render_template('taskboard.html', tasks=tasks)
+    categories = Category.query.all()
+    return render_template('taskboard.html', tasks=tasks, categories=categories)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        # User.query.filter_by() returns a list from the User table
-        # first() returns first element of the list
-        # the form.username.data is getting the info the user submitted in the form
+
         user = User.query.filter_by(username=form.username.data).first()
         # if no user found or password for user incorrect
         # user.check_password() is a method in the User class
@@ -169,15 +160,16 @@ def edit_task(task_id):
             return redirect('/taskboard')
     return render_template('edittask.html', task = task.content, form=form)
 
-@app.route('/priority')
+@app.route('/priority', methods=['GET', 'POST'])
 @login_required
 def filter_priority():
+    user = User.query.filter_by(username=current_user.username).first()
+    tasks = Task.query.filter_by(user_id=user.id).order_by(Task.priority.asc())
+    categories = Category.query.all()
 
-    tasks = Task.query.order_by(Task.priority.asc())
+    return render_template('taskboard.html', tasks=tasks, categories=categories)
 
-    return render_template('taskboard.html', tasks=tasks)
-
-@app.route('/createcategory', methods = ['GET', 'POST'])
+@app.route('/createcategory', methods = ['GET', 'POST'] )
 @login_required
 def createcategory():
     user = User.query.filter_by(username=current_user.username).first()
@@ -188,6 +180,15 @@ def createcategory():
         db.session.commit()
         return redirect('/taskboard')
     return render_template('addcategory.html', title= 'Add Category',form = form)
+
+@app.route("/category/<int:category_id>", methods=['GET', 'POST'])
+@login_required
+def category(category_id):
+    user = User.query.filter_by(username=current_user.username).first()
+    tasks = Task.query.filter_by(user_id=user.id, category_id=category_id).all()
+    categories = Category.query.all()
+    return render_template('taskboard.html', tasks=tasks, categories=categories)
+
 
 #@app.route('/assignuser', methods = ['GET','POST'])
 #@login_required

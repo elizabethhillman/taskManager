@@ -2,8 +2,20 @@
 
 {% block content %}
     {% if current_user.is_authenticated %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/taskboard.css') }}">
             <div>
-                <h1>Task</h1>   <a href='/priority'>Sort by priority<a>
+                <h1>Task</h1>   
+                <nav>
+                    <ul>
+                        <li><a href="/priority">Sort by priority</a></li>
+                        <li>Category
+                            <ul>
+                                {% for category in categories %}
+                                <li><a href="/category/{{category.id}}">{{category.category}}</a></li>
+                                {% endfor %}
+                        </li>
+                    </ul>    
+                </nav>
                 {% for task in tasks %}
                 <ul>
                 <li>
