@@ -13,15 +13,16 @@ from app.models import User, Post, Task, Category
 @app.route('/')
 def index():
     return render_template('base.html')
-@app.route('/taskboard',methods=['GET', 'POST'])
 
+@app.route('/taskboard',methods=['GET', 'POST'])
 def taskboard():
+    user = User.query.filter_by(username=current_user.username).first()
     # user = current_user
     # taskList = (db.session.query(User, Task)
     #     .join(User)
     #     ).all()
 
-    tasks = Task.query.all()
+    tasks = Task.query.filter_by(user_id=user.id).all()
     # for item in taskList:
     #     #Add the item in the message list into the posts
     #     tasks.append(item.Task.content)
