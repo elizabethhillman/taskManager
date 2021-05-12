@@ -1,11 +1,14 @@
 from app import db
 from app import app
+from app import mail
+from datetime import datetime
 from flask import render_template, flash, redirect, request, url_for
+from flask_mail import Message
 from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category
 
@@ -124,7 +127,7 @@ def newtask():
     user = User.query.filter_by(username=current_user.username).first()
     form = NewTask()
     form.category.choices = [(c.id, c.category) for c in Category.query.all()]
-    #print(user.id)
+    
     if form.validate_on_submit():
         task = Task(content=form.addtask.data, priority=form.priority.data, category_id=form.category.data, author=user)
         db.session.add(task)
@@ -216,3 +219,22 @@ This also includes where the user can navigate from each form.
 
 #     db.session.commit()
 #     return redirect('/')
+
+@app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
+@login_required
+def reminder(task_id):
+    # msg = Message('Test Mail!', sender ='testingemailforsite@gmail.com', recipients = ['thanhthientran1018@gmail.com'])
+    # msg.body = "test"
+    # mail.send(msg)
+    form = Reminder()
+    
+    if form.validate_on_submit():
+        now = datetime.now()
+        date_string = form.date.data
+        print(date_string)
+       
+        print(now)
+        print(form.time.data)
+        
+
+    return render_template('reminder.html', title = 'Set up reminder', form = form) 

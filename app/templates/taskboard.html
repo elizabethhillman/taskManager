@@ -19,7 +19,7 @@
                 {% for task in tasks %}
                 <ul>
                 <li>
-                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}}) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>
+                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}}) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a>
                 </li>
                 </ul>
                 {% endfor %}
