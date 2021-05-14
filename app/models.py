@@ -40,6 +40,8 @@ class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String, unique=False, nullable=False)
     complete = db.Column(db.Boolean, default=False)
+    estimatehr = db.Column(db.Integer, nullable = True)
+    estimatemin = db.Column(db.Integer, nullable = True)
     priority = db.Column(db.Integer, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('categories', lazy=True))

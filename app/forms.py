@@ -22,6 +22,8 @@ class ChangePasswordForm(FlaskForm):
 
 class NewTask(FlaskForm):
     addtask = StringField('New Task', validators=[DataRequired()])
+    estimatehr = SelectField('Hours:', choices = [0,1,2,3])
+    estimatemin = SelectField('Minutes:', choices =[0,5,10,15,20,25,30,25,40,45,50,55])
     priority = SelectField('Priority', choices=[(1, '1'),(2, '2'),(3, '3')], validators=[DataRequired()])
     category = SelectField('Category', choices=[], validators=[DataRequired()])
     submit = SubmitField('Add')

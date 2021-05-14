@@ -129,7 +129,7 @@ def newtask():
     form.category.choices = [(c.id, c.category) for c in Category.query.all()]
     
     if form.validate_on_submit():
-        task = Task(content=form.addtask.data, priority=form.priority.data, category_id=form.category.data, author=user)
+        task = Task(content=form.addtask.data, estimatehr=form.estimatehr.data, estimatemin=form.estimatemin.data, priority=form.priority.data, category_id=form.category.data, author=user)
         db.session.add(task)
         db.session.commit()
         print(task.user_id)
@@ -181,7 +181,7 @@ def createcategory():
         category = Category(category=form.addcategory.data, author=user)
         db.session.add(category)
         db.session.commit()
-        return redirect('/taskboard')
+        return redirect('/addtask')
     return render_template('addcategory.html', title= 'Add Category',form = form)
 
 @app.route("/category/<int:category_id>", methods=['GET', 'POST'])
