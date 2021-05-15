@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, SelectField
-from wtforms.validators import DataRequired, ValidationError
+from wtforms import StringField, PasswordField, SubmitField, SelectField, BooleanField
+from wtforms.validators import DataRequired, ValidationError, Optional
 from wtforms.fields.html5 import DateField, TimeField
 
 
@@ -39,6 +39,7 @@ class CreateCategory(FlaskForm):
 
 class Reminder(FlaskForm):
     date = DateField('Date', validators=[DataRequired()])
-    time = TimeField('Time', validators=[DataRequired()])
+    selectTime = SelectField('Want Chose a Time for reminder',choices=[(1, 'yes'),(2, 'none')], validators=[DataRequired()])
+    time = TimeField('Time', validators=[Optional()])
     startorcomplet = SelectField('Select', choices=[(1, 'Start'),(2, 'Need to complete'),(3, 'Both')], validators=[DataRequired()])
     submit = SubmitField('Done')

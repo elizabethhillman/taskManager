@@ -1,5 +1,6 @@
 import os
 
+from celery import Celery
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -19,6 +20,7 @@ app.config.from_mapping(
     # location of database
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db'),
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    
 )
 
 db = SQLAlchemy(app)
@@ -35,5 +37,24 @@ app.config['MAIL_PASSWORD'] = 'nsvgqgsycmxmfdhi'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
+
+def make_celery(app):
+    celery = Celery(
+        app.import_name,
+        backend="redis://localhost:6379/0",
+        broker="redis://localhost:6379/1"
+    )
+    celery.conf.update(app.config)
+
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
+
+    celery.Task = ContextTask
+    return celery
+
+
+celery = make_celery(app)
 
 from app import routes, models

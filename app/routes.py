@@ -1,7 +1,9 @@
 from app import db
 from app import app
 from app import mail
-from datetime import datetime
+import datetime
+from app import celery
+from datetime import date, timedelta, datetime
 from flask import render_template, flash, redirect, request, url_for
 from flask_mail import Message
 from flask_login import current_user, login_user
@@ -219,22 +221,54 @@ This also includes where the user can navigate from each form.
 
 #     db.session.commit()
 #     return redirect('/')
-
+@celery.task
+def send_mail(data):
+    msg = Message("Ping!",
+                    sender ='testingemailforsite@gmail.com',
+                    recipients=[data['email']])
+    msg.body = data['message']
+    with app.app_context():
+        mail.send(msg)
 @app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
 @login_required
 def reminder(task_id):
-    # msg = Message('Test Mail!', sender ='testingemailforsite@gmail.com', recipients = ['thanhthientran1018@gmail.com'])
-    # msg.body = "test"
-    # mail.send(msg)
     form = Reminder()
-    
+    user = current_user
     if form.validate_on_submit():
-        now = datetime.now()
-        date_string = form.date.data
-        print(date_string)
-       
-        print(now)
-        print(form.time.data)
+        TimeOrDay = int(form.selectTime.data)
         
-
+        startOrcomplete = int(form.startorcomplet.data)
+        data = {}
+        data['email'] = user.email
+        if(startOrcomplete == 1):
+            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start'
+        if(startOrcomplete == 2):
+            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Complete'
+        if(startOrcomplete == 3):
+            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start and Complete soon'
+        
+        if(TimeOrDay == 2):
+            now = date.today()
+            dateslect = form.date.data
+            now = str(now)
+            dateslect = str(dateslect)
+            datetimeFormat = '%Y-%m-%d'
+            diff = datetime.strptime(dateslect, datetimeFormat)- datetime.strptime(now, datetimeFormat)
+            duration = diff.total_seconds()
+            print(duration)
+            send_mail.apply_async(args=[data], countdown = duration)
+            return redirect(url_for('taskboard'))
+        if(TimeOrDay == 1):
+            datetimeFormat = '%Y-%m-%d %H:%M:%S.%f'
+            now = str(datetime.now())
+            now = datetime.strptime(now, datetimeFormat)
+            print(now)
+            dateslect = str(form.date.data)+" "+str(form.time.data)+"."+str(00)
+            dateslect = datetime.strptime(dateslect, datetimeFormat)
+            print(dateslect)
+            diff = dateslect - now
+            duration = diff.total_seconds()
+            print(duration)
+            send_mail.apply_async(args=[data], countdown = duration)
+            return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
