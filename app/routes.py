@@ -222,13 +222,12 @@ This also includes where the user can navigate from each form.
 #     db.session.commit()
 #     return redirect('/')
 @celery.task
-def send_mail(data):
+def send_mail(info):
     msg = Message("Ping!",
                     sender ='testingemailforsite@gmail.com',
-                    recipients=[data['email']])
-    msg.body = data['message']
-    with app.app_context():
-        mail.send(msg)
+                    recipients=[info['email']])
+    msg.body = info['message']
+    mail.send(msg)
 @app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
 @login_required
 def reminder(task_id):
@@ -238,14 +237,14 @@ def reminder(task_id):
         TimeOrDay = int(form.selectTime.data)
         
         startOrcomplete = int(form.startorcomplet.data)
-        data = {}
-        data['email'] = user.email
+        info = {}
+        info['email'] = user.email
         if(startOrcomplete == 1):
-            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start'
+            info['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start'
         if(startOrcomplete == 2):
-            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Complete'
+            info['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Complete'
         if(startOrcomplete == 3):
-            data['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start and Complete soon'
+            info['message'] = 'Hello, this is SITE and we like to remind you that you have a task need to Start and Complete soon'
         
         if(TimeOrDay == 2):
             now = date.today()
@@ -256,7 +255,7 @@ def reminder(task_id):
             diff = datetime.strptime(dateslect, datetimeFormat)- datetime.strptime(now, datetimeFormat)
             duration = diff.total_seconds()
             print(duration)
-            send_mail.apply_async(args=[data], countdown = duration)
+            send_mail.apply_async(args=[info], countdown = duration)
             return redirect(url_for('taskboard'))
         if(TimeOrDay == 1):
             datetimeFormat = '%Y-%m-%d %H:%M:%S.%f'
@@ -269,6 +268,6 @@ def reminder(task_id):
             diff = dateslect - now
             duration = diff.total_seconds()
             print(duration)
-            send_mail.apply_async(args=[data], countdown = duration)
+            send_mail.apply_async(args=[info], countdown = duration)
             return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
