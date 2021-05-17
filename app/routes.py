@@ -12,7 +12,7 @@ from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder
 from werkzeug.security import check_password_hash
-from app.models import User, Post, Task, Category
+from app.models import User, Post, Task, Category, Subtask
 
 
 @app.route('/')
@@ -271,3 +271,19 @@ def reminder(task_id):
             send_mail.apply_async(args=[info], countdown = duration)
             return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
+
+@app.route('/addsubtask', methods=['GET','POST'])
+@login_required
+def newsubtask():
+    user = User.query.filter_by(username=current_user.username).first()
+    #task = Task.query.get(task_id)
+    subtasks = Subtask.query.get(subtask_id)
+    form = Subtask()
+
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            subtasks.content = form.subtask.data
+            db.session.add(subtask)
+            db.session.commit()
+            return redirect('/taskboard')
+    return render_template('subtask.html', subtask = subtask.content, form =form)
