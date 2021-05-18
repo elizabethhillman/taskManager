@@ -10,7 +10,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Collaborator
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category, Subtask
 
@@ -283,3 +283,14 @@ def newsubtask(task_id):
             db.session.commit()
         return redirect('/taskboard')
     return render_template('subtask.html', form=form)
+
+# @app.route('/addcollaborator', methods=['GET', 'POST'])
+# @login_required
+# def Collaborator():
+#     form = Collaborate()
+
+#     if request.method == 'Post':
+#         if fomr.validate_on_submit():
+#             currentuser = current_user
+#             user = User.query.filter_by(username=form.addcollaborate).first()
+#             currentuser_task = 

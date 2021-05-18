@@ -47,3 +47,7 @@ class Reminder(FlaskForm):
 class Addsubtask(FlaskForm):
     addsubtask = StringField('New Subtask', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+class Addcollaborator(FlaskForm):
+    addcollaborator = StringField('Collaborator', validators=[DataRequired()])
+    submit = SubmitField('Add')
