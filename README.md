@@ -47,3 +47,44 @@ When you first open the website, first choose the sign in option and log in with
        and then tried signing them in with the old password to make sure that one 
        did not work. We then tried logging them in with the new password to make 
        sure that would work.  
+       
+    6. Add Subtask
+       - To ensure this works, we tried adding different subtasks for different tasks that
+       are apart of the taskboard to make sure the subtask was only visible on the certain
+       task. In addition, we ensured this works by adding multiple subtasks. 
+       
+    7. Add Estimate Time
+       - To ensure this works, we tried adding different estimated times for each task to 
+       verify that it is visible for each task.
+       
+    8. Create Test Categories
+       - To ensure this works, we tried creating a multitude of categories in order to verify
+       that each task would display the category that they are assigned to. In addition, we allowed 
+       the user to organize the tasks by category and we verified that worked by choosing one
+       category and making sure that every task assigned that category is visible.
+       
+    9. Give Task Priority
+       - To ensure this works, we assigned tasks different priorities to make sure that they will be 
+       visible in order of priority (priority 1 being the highest). In addition, after the tasks were 
+       organized by category, we ensured that the user could still reorganize the tasks by their
+       priority. 
+       
+    10. Invite Other User
+        - To ensure this works,
+        
+    11. Assign Task to User
+        - To ensure this works,
+        
+    12. Reminder for Task
+        - To ensure this works,
+        
+    13. Plan for Specific Day
+        - To ensure this works,
+        
+    14. Log in
+        - To ensure this works, after registering a new user, we made sure that the user could view
+        their task board by logging in with their credentials. 
+        
+    15. Log out 
+        - To ensure this works, we made sure that after selecting the "Sign out" button, the user
+        could no longer view their taskboard. 
