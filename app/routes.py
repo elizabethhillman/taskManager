@@ -224,11 +224,12 @@ This also includes where the user can navigate from each form.
 #     return redirect('/')
 @celery.task
 def send_mail(info):
-    msg = Message("Ping!",
-                    sender ='testingemailforsite@gmail.com',
-                    recipients=[info['email']])
-    msg.body = info['message']
-    mail.send(msg)
+    with app.app_context():
+        msg = Message("Ping!",
+                        sender ='testingemailforsite@gmail.com',
+                        recipients=[info['email']])
+        msg.body = info['message']
+        mail.send(msg)
 @app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
 @login_required
 def reminder(task_id):
@@ -255,22 +256,19 @@ def reminder(task_id):
             datetimeFormat = '%Y-%m-%d'
             diff = datetime.strptime(dateslect, datetimeFormat)- datetime.strptime(now, datetimeFormat)
             duration = diff.total_seconds()
-            print(duration)
-            send_mail.apply_async(args=[info], countdown = duration)
-            return redirect(url_for('taskboard'))
+           
         if(TimeOrDay == 1):
             datetimeFormat = '%Y-%m-%d %H:%M:%S.%f'
             now = str(datetime.now())
             now = datetime.strptime(now, datetimeFormat)
-            print(now)
             dateslect = str(form.date.data)+" "+str(form.time.data)+"."+str(00)
             dateslect = datetime.strptime(dateslect, datetimeFormat)
-            print(dateslect)
             diff = dateslect - now
             duration = diff.total_seconds()
-            print(duration)
-            send_mail.apply_async(args=[info], countdown = duration)
-            return redirect(url_for('taskboard'))
+
+        print(duration)
+        send_mail.apply_async(args=[info], countdown = duration)
+        return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
 
 @app.route('/addsubtask/<int:task_id>', methods=['GET','POST'])
@@ -292,7 +290,7 @@ def Collaborator():
     form = Addcollaborator()
 
     if request.method == 'Post':
-        if fomr.validate_on_submit():
+        if form.validate_on_submit():
             currentuser = current_user
             user = User.query.filter_by(username=form.addcollaborate).first()
             user.id = currentuser.id  
