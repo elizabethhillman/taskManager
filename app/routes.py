@@ -10,7 +10,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category, Subtask
 
@@ -24,7 +24,8 @@ def taskboard():
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id).all()
     categories = Category.query.filter_by(user_id=user.id).all()
-    return render_template('taskboard.html', tasks=tasks, categories=categories)
+    subtask = Subtask.query.all()
+    return render_template('taskboard.html', tasks=tasks, categories=categories, subtasks=subtask)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -272,18 +273,15 @@ def reminder(task_id):
             return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
 
-@app.route('/addsubtask', methods=['GET','POST'])
+@app.route('/addsubtask/<int:task_id>', methods=['GET','POST'])
 @login_required
-def newsubtask():
-    user = User.query.filter_by(username=current_user.username).first()
-    #task = Task.query.get(task_id)
-    subtasks = Subtask.query.get(subtask_id)
-    form = Subtask()
-
-    if request.method == 'POST':
+def newsubtask(task_id):
+    form = Addsubtask()
+    task = Task.query.get(task_id)
+    if request.method == 'POST' :
         if form.validate_on_submit():
-            subtasks.content = form.subtask.data
-            db.session.add(subtask)
+            subtasks = Subtask(subtask=form.addsubtask.data, task_id=task.id)   
+            db.session.add(subtasks)
             db.session.commit()
-            return redirect('/taskboard')
-    return render_template('subtask.html', subtask = subtask.content, form =form)
+        return redirect('/taskboard')
+    return render_template('subtask.html', form=form)

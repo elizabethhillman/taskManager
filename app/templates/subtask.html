@@ -3,10 +3,11 @@
 {% block content %}
     <h1>Add Subtask</h1>
     <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
         <p>
             {{ form.addsubtask.label }}<br>
-            {{ form.addsubtask(size=256)}}
+            {{ form.addsubtask(size=256) }}
         </p>
-        <p>{{ form.submit() }}</p>
+      <p>{{ form.submit() }}</p>
     </form>
 {% endblock %}

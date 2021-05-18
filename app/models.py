@@ -13,7 +13,6 @@ class User(UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
     content = db.relationship('Task', backref='author', lazy='dynamic' )
     category = db.relationship('Category', backref='author', lazy='dynamic')
-    subtask = db.relationship('Subtask', backref='author', lazy='dynamic')
 
     def set_password(self, password):
         self.password = generate_password_hash(password)
@@ -38,7 +37,7 @@ class Post(db.Model):
         return '<Posts {}>'.format(self.body)
 
 class Task(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     content = db.Column(db.String, unique=False, nullable=False)
     complete = db.Column(db.Boolean, default=False)
     estimatehr = db.Column(db.Integer, nullable = True)
@@ -46,8 +45,8 @@ class Task(db.Model):
     priority = db.Column(db.Integer, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('categories', lazy=True))
-    subtask_id = db.Column(db.String, nullable=False)
-    subtask = db.relationship('Subtask', backref=db.backref('subtasks', lazy=True))
+    subtask = db.relationship('Subtask', backref = 'subtasks', lazy = 'dynamic')
+
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
@@ -70,9 +69,9 @@ class Category(db.Model):
         return f'<Category: {self.category}>'
 
 class Subtask(db.Model):
-    id = db.Column(db.String, primary_key = True)
-    content = db.Column(db.String(30), unique=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    id = db.Column(db.Integer, primary_key = True)
+    subtask = db.Column(db.String(30), unique=False, nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
 
     def __repr__(self):
         return f'<Subtask: {self.subtask}>'

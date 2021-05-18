@@ -44,6 +44,6 @@ class Reminder(FlaskForm):
     startorcomplet = SelectField('Select', choices=[(1, 'Start'),(2, 'Need to complete'),(3, 'Both')], validators=[DataRequired()])
     submit = SubmitField('Done')
 
-class Subtask(FlaskForm):
+class Addsubtask(FlaskForm):
     addsubtask = StringField('New Subtask', validators=[DataRequired()])
     submit = SubmitField('Add')
