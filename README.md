@@ -10,6 +10,8 @@ Once the repository is cloned on a users own computer, the website can then be a
 
      * Python v3.9.1
      * Flask
+     * Celery 
+     * Redis 
 
 On your python shell, run the following command:
 
