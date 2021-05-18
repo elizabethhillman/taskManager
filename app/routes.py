@@ -10,7 +10,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Collaborator
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category, Subtask
 
@@ -224,12 +224,11 @@ This also includes where the user can navigate from each form.
 #     return redirect('/')
 @celery.task
 def send_mail(info):
-    with app.app_context():
-        msg = Message("Ping!",
-                        sender ='testingemailforsite@gmail.com',
-                        recipients=[info['email']])
-        msg.body = info['message']
-        mail.send(msg)
+    msg = Message("Ping!",
+                    sender ='testingemailforsite@gmail.com',
+                    recipients=[info['email']])
+    msg.body = info['message']
+    mail.send(msg)
 @app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
 @login_required
 def reminder(task_id):
@@ -256,19 +255,22 @@ def reminder(task_id):
             datetimeFormat = '%Y-%m-%d'
             diff = datetime.strptime(dateslect, datetimeFormat)- datetime.strptime(now, datetimeFormat)
             duration = diff.total_seconds()
-           
+            print(duration)
+            send_mail.apply_async(args=[info], countdown = duration)
+            return redirect(url_for('taskboard'))
         if(TimeOrDay == 1):
             datetimeFormat = '%Y-%m-%d %H:%M:%S.%f'
             now = str(datetime.now())
             now = datetime.strptime(now, datetimeFormat)
+            print(now)
             dateslect = str(form.date.data)+" "+str(form.time.data)+"."+str(00)
             dateslect = datetime.strptime(dateslect, datetimeFormat)
+            print(dateslect)
             diff = dateslect - now
             duration = diff.total_seconds()
-
-        print(duration)
-        send_mail.apply_async(args=[info], countdown = duration)
-        return redirect(url_for('taskboard'))
+            print(duration)
+            send_mail.apply_async(args=[info], countdown = duration)
+            return redirect(url_for('taskboard'))
     return render_template('reminder.html', title = 'Set up reminder', form = form) 
 
 @app.route('/addsubtask/<int:task_id>', methods=['GET','POST'])
@@ -284,13 +286,15 @@ def newsubtask(task_id):
         return redirect('/taskboard')
     return render_template('subtask.html', form=form)
 
-# @app.route('/addcollaborator', methods=['GET', 'POST'])
-# @login_required
-# def Collaborator():
-#     form = Collaborate()
+@app.route('/addcollaborator', methods=['GET', 'POST'])
+@login_required
+def Collaborator():
+    form = Addcollaborator()
 
-#     if request.method == 'Post':
-#         if fomr.validate_on_submit():
-#             currentuser = current_user
-#             user = User.query.filter_by(username=form.addcollaborate).first()
-#             currentuser_task = 
+    if request.method == 'Post':
+        if fomr.validate_on_submit():
+            currentuser = current_user
+            user = User.query.filter_by(username=form.addcollaborate).first()
+            user.id = currentuser.id  
+        return redirect('/taskboard')
+    return render_template('collaborate.html', form=form)         
