@@ -19,7 +19,7 @@
                 {% for task in tasks %}
                 <ul>
                 <li>
-                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}})(Time: {{task.estimatehr}} hrs {{task.estimatemin}} mins) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a> <a href="/addsubtask/{{task.id}}">Add subtask</a>
+                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}})(Time: {{task.estimatehr}} hrs {{task.estimatemin}} mins) (Assigned to: {{task.assignuser}}) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a> <a href="/addsubtask/{{task.id}}">Add subtask</a> <a href="/assignuser/{{task.id}}">Assign User</a>
                     <ul>
                     
                 {% for subtask in task.subtask %}
