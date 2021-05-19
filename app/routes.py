@@ -22,7 +22,7 @@ def index():
 @app.route('/taskboard',methods=['GET', 'POST'])
 def taskboard():
     user = User.query.filter_by(username=current_user.username).first()
-    tasks = Task.query.filter_by(user_id=user.id).all()
+    tasks = Task.query.filter_by(user_id=user.id, collaborate_id = None).all()
     categories = Category.query.filter_by(user_id=user.id).all()
     subtask = Subtask.query.all()
     return render_template('taskboard.html', tasks=tasks, categories=categories, subtasks=subtask)
