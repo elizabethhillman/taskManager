@@ -10,7 +10,7 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator, AssignUser
 from werkzeug.security import check_password_hash
 from app.models import User, Post, Task, Category, Subtask, AssignedUser
 
@@ -324,6 +324,7 @@ def Collaborator():
 @app.route('/assignuser', methods = ['GET','POST'])
 @login_required
 def assignuser():
+    form =AssignUser()
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id).all()
     categories = Category.query.filter_by(user_id=user.id).all()
