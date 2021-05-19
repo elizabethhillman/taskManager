@@ -10,9 +10,9 @@ from flask_login import current_user, login_user
 from flask_login import logout_user
 from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator, AssignUser
+from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator, AssignUser, AddEvent
 from werkzeug.security import check_password_hash
-from app.models import User, Post, Task, Category, Subtask, AssignedUser
+from app.models import User, Post, Task, Category, Subtask, AssignedUser, Event
 
 
 @app.route('/')
@@ -329,3 +329,24 @@ def assignuser():
     tasks = Task.query.filter_by(user_id=user.id).all()
     categories = Category.query.filter_by(user_id=user.id).all()
     return render_template('assignuser.html', title= 'Assign User',form = form)
+
+@app.route('/calendar', methods = ['GET','POST'])
+@login_required
+def calender():
+    user = User.query.filter_by(username=current_user.username).first()
+    form = AddEvent()
+    if form.validate_on_submit():
+        event = Event(title=form.addtitle.data, date=datetime.strptime(str(form.adddate.data),'%Y-%m-%d'), author=user)
+        db.session.add(event)
+        db.session.commit()
+        print(event.user_id)
+        return redirect('/calendar')
+    events = Event.query.filter_by(user_id = user.id).all()
+    print(events)
+    listEvent = []
+    for item in events:
+        listEvent.append({
+            'title': item.title,
+            'date': item.date
+        })
+    return render_template('calendar.html', title = 'Calendar', posts=listEvent, form = form)
