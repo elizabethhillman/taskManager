@@ -78,6 +78,14 @@ class Subtask(db.Model):
     def __repr__(self):
         return f'<Subtask: {self.subtask}>'
 
+class AssignedUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    assigneduser = db.Column(db.String(65), unique=True, nullable=False)
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+
+    def __repr__(self):
+        return f'<AssignedUser: {self.assigneduser}>'
+    
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
