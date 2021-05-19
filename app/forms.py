@@ -51,3 +51,7 @@ class Addsubtask(FlaskForm):
 class Addcollaborator(FlaskForm):
     addcollaborator = StringField('Collaborator', validators=[DataRequired()])
     submit = SubmitField('Add')
+    
+class AssignUser(FlaskForm):
+    assignuser = StringField('Assign Task to User', validators=[DataRequired()])
+    submit = SubmitField('Done')
