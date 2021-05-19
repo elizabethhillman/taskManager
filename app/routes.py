@@ -12,7 +12,7 @@ from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator
 from werkzeug.security import check_password_hash
-from app.models import User, Post, Task, Category, Subtask
+from app.models import User, Post, Task, Category, Subtask, AssignedUser
 
 
 @app.route('/')
