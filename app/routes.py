@@ -27,6 +27,13 @@ def taskboard():
     subtask = Subtask.query.all()
     return render_template('taskboard.html', tasks=tasks, categories=categories, subtasks=subtask)
 
+@app.route('/collaboratetaskboard',methods=['GET', 'POST'])
+def collaboratetaskboard():
+    user = User.query.filter_by(username=current_user.username).first()
+    tasks = Task.query.filter_by(collaborate_id=user.collaborate).all()
+    subtask = Subtask.query.all()
+    return render_template('collaboratetask.html', tasks=tasks, subtasks=subtask)
+
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
@@ -139,6 +146,21 @@ def newtask():
         return redirect('/taskboard')
     return render_template('addtask.html', title= 'Add task',form = form)
     
+@app.route('/addcollaboratetask', methods = ['GET', 'POST'])
+@login_required
+def collaboratenewtask():
+    user = User.query.filter_by(username=current_user.username).first()
+    form = NewTask()
+    form.category.choices = [(c.id, c.category) for c in Category.query.all()]
+    
+    if form.validate_on_submit():
+        task = Task(content=form.addtask.data, estimatehr=form.estimatehr.data, estimatemin=form.estimatemin.data, priority=form.priority.data, category_id=form.category.data, collaborate_id=user.collaborate, author=user)
+        db.session.add(task)
+        db.session.commit()
+        print(task.user_id)
+        return redirect('/collaboratetaskboard')
+    return render_template('addtask.html', title= 'Add task',form = form)
+
 @app.route('/delete/<int:task_id>')
 @login_required
 def delete_task(task_id):
@@ -289,10 +311,11 @@ def newsubtask(task_id):
 def Collaborator():
     form = Addcollaborator()
 
-    if request.method == 'Post':
-        if form.validate_on_submit():
-            currentuser = current_user
-            user = User.query.filter_by(username=form.addcollaborate).first()
-            user.id = currentuser.id  
-        return redirect('/taskboard')
+    if form.validate_on_submit():
+        currentuser = current_user
+        user = User.query.filter_by(username=form.addcollaborator.data).first()
+        current_user.collaborate= current_user.id
+        user.collaborate=current_user.collaborate
+        db.session.commit()
+        return redirect('/collaboratetaskboard')
     return render_template('collaborate.html', form=form)         

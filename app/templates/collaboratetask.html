@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/taskboard.css') }}">
+    {% if current_user.is_authenticated %}
+            <div>
+                <h1>Collaborate Task</h1>   
+                <a href ="/addcollaborator">Add Collaborator</a>
+ 
+                        <li><a href="/priority">Sort by priority</a></li>
+
+                {% for task in tasks %}
+                <ul>
+                <li>
+                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}})(Time: {{task.estimatehr}} hrs {{task.estimatemin}} mins) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a> <a href="/addsubtask/{{task.id}}">Add subtask</a>
+                    <ul>
+                    
+                {% for subtask in task.subtask %}
+		<li>                    
+        	    {{subtask.subtask}}
+		</li>                     
+  		 {% endfor %}    
+                    </ul>
+                </li>
+                </ul>
+                {% endfor %}
+                <div>Add a new todo item: 
+                <a href="/addcollaboratetask"> add</a>
+                </div> 
+            </div>
+    {% endif %}
+{% endblock %}

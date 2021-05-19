@@ -6,6 +6,7 @@ from flask_login import UserMixin
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    collaborate = db.Column(db.Integer, unique=False)
     username = db.Column(db.String, nullable=False, unique=False)
     email = db.Column(db.String(32), unique=True, nullable=False, index=True)
     password = db.Column(db.String(200), unique=False)
@@ -43,6 +44,7 @@ class Task(db.Model):
     estimatehr = db.Column(db.Integer, nullable = True)
     estimatemin = db.Column(db.Integer, nullable = True)
     priority = db.Column(db.Integer, nullable=False)
+    collaborate_id = db.Column(db.Integer, nullable=True, unique=False)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('categories', lazy=True))
     subtask = db.relationship('Subtask', backref = 'subtasks', lazy = 'dynamic')
