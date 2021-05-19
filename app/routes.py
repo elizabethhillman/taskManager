@@ -248,10 +248,11 @@ This also includes where the user can navigate from each form.
 def send_mail(info):
     with app.app_context():
         msg = Message("Ping!",
-                        sender ='testingemailforsite@gmail.com',
+                        sender =('SITE' ,'testingemailforsite@gmail.com'),
                         recipients=[info['email']])
         msg.body = info['message']
         mail.send(msg)
+
 @app.route('/reminder/<int:task_id>', methods = ['GET', 'POST'] )
 @login_required
 def reminder(task_id):
@@ -278,7 +279,7 @@ def reminder(task_id):
             datetimeFormat = '%Y-%m-%d'
             diff = datetime.strptime(dateslect, datetimeFormat)- datetime.strptime(now, datetimeFormat)
             duration = diff.total_seconds()
-           
+            duration = float(duration)
         if(TimeOrDay == 1):
             datetimeFormat = '%Y-%m-%d %H:%M:%S.%f'
             now = str(datetime.now())
@@ -286,8 +287,8 @@ def reminder(task_id):
             dateslect = str(form.date.data)+" "+str(form.time.data)+"."+str(00)
             dateslect = datetime.strptime(dateslect, datetimeFormat)
             diff = dateslect - now
-            duration = diff.total_seconds()
-
+            duration =diff.total_seconds()
+            duration = float(duration)
         print(duration)
         send_mail.apply_async(args=[info], countdown = duration)
         return redirect(url_for('taskboard'))

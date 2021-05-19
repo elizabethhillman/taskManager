@@ -29,33 +29,37 @@ login = LoginManager(app)
 # right side is the function that's called to login users
 login.login_view = 'login'
 
+mail_settings = {
+    "MAIL_SERVER": 'smtp.gmail.com',
+    "MAIL_PORT": 465,
+    "MAIL_USE_TLS": False,
+    "MAIL_USE_SSL": True,
+    "MAIL_USERNAME": "testingemailforsite@gmail.com",
+    "MAIL_PASSWORD": "T-thanh1018"
+}
 
-app.config['MAIL_SERVER']='smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USERNAME'] = 'testingemailforsite@gmail.com'
-app.config['MAIL_PASSWORD'] = 'nsvgqgsycmxmfdhi'
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+app.config.update(mail_settings)
+
 mail = Mail(app)
 
-# def make_celery(app):
-#     celery = Celery(
-#         app.import_name,
-#         backend="redis://localhost:6379/0",
-#         broker="redis://localhost:6379/0"
-#     )
-#     celery.conf.update(app.config)
+def make_celery(app):
+    celery = Celery(
+        app.import_name,
+        backend="redis://localhost:6379/0",
+        broker="redis://localhost:6379/0"
+    )
+    celery.conf.update(app.config)
 
-#     class ContextTask(celery.Task):
-#         def __call__(self, *args, **kwargs):
-#             with app.app_context():
-#                 return self.run(*args, **kwargs)
+    class ContextTask(celery.Task):
+        def __call__(self, *args, **kwargs):
+            with app.app_context():
+                return self.run(*args, **kwargs)
 
-#     celery.Task = ContextTask
-#     return celery
+    celery.Task = ContextTask
+    return celery
 
 
-celery = Celery(app.name,broker= 'redis://127.0.0.1:6379/0',)
+celery = make_celery(app)
 
 
 from app import routes, models
