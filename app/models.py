@@ -46,10 +46,10 @@ class Task(db.Model):
     estimatemin = db.Column(db.Integer, nullable = True)
     priority = db.Column(db.Integer, nullable=False)
     collaborate_id = db.Column(db.Integer, nullable=True, unique=False)
+    assign_user = db.Column(db.String,unique=False, nullable=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'), nullable=False)
     category = db.relationship('Category', backref=db.backref('categories', lazy=True))
     subtask = db.relationship('Subtask', backref = 'subtasks', lazy = 'dynamic')
-
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
    
@@ -87,13 +87,6 @@ class Subtask(db.Model):
     def __repr__(self):
         return f'<Subtask: {self.subtask}>'
 
-class AssignedUser(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    assigneduser = db.Column(db.String(65), unique=True, nullable=False)
-    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
-
-    def __repr__(self):
-        return f'<AssignedUser: {self.assigneduser}>'
     
 @login.user_loader
 def load_user(id):
