@@ -72,16 +72,22 @@ When you first open the website, first choose the sign in option and log in with
        priority. 
        
     10. Invite Other User
-        - To ensure this works,
+        - To ensure this works, we created another user -test2- that we added as a collaborator on our 
+        first user -test's- taskboard. We ensured that the collaborated tasks can be seen under 
+        "Collaborate Task" and the personal tasks remain hidden from the collaborating user. 
         
     11. Assign Task to User
-        - To ensure this works,
+        - To ensure this works, we assigned a collaborating task to the user -test- and ensured the task 
+        was seen under "collaborate task" on the "my taskboard" page. We also tested that only usernames 
+        of collaborating user can be assigned a task. The collaborating user can still see collaborating 
+        tasks that are not assigned to them.
         
     12. Reminder for Task
-        - To ensure this works,
+        - To ensure this works, 
         
     13. Plan for Specific Day
-        - To ensure this works,
+        - To ensure this works, after navigating to the calendar, we added events for specific days and 
+        checked that the events appeared on the assigned dates.
         
     14. Log in
         - To ensure this works, after registering a new user, we made sure that the user could view
