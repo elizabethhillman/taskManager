@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/formpage.css') }}">
+
+    <div class="form_page">
+        <h1>Add Task</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+               <b> {{ form.addtask.label }}</b><br>
+                {{ form.addtask(size=30) }}
+            </p>
+    
+        <p><b>Estimated Time</b></p>
+    
+            <p> 
+                {{form.estimatehr.label }}
+                {{form.estimatehr() }}
+               
+    
+         
+                {{form.estimatemin.label }}
+                {{form.estimatemin() }}
+            </p>
+    
+            <p>
+                <b>{{ form.priority.label }}</b><br>
+                {{ form.priority() }}
+            </p>
+            <p>
+                <b>{{ form.category.label }}</b><br>
+                {{ form.category() }}
+            </p>
+    
+            <p><a href="/collaboratecreatecategory">Create category</a></p>
+    
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+
+{% endblock %}
