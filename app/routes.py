@@ -192,8 +192,19 @@ def filter_priority():
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id).order_by(Task.priority.asc())
     categories = Category.query.filter_by(user_id=user.id).all()
+    assign_tasks = Task.query.filter_by(assign_user=user.username).order_by(Task.priority.asc())
 
-    return render_template('taskboard.html', tasks=tasks, categories=categories)
+    return render_template('taskboard.html', tasks=tasks, assign_tasks = assign_tasks, categories=categories)
+
+@app.route('/collapriority', methods=['GET', 'POST'])
+@login_required
+def filter_priority_collaborate():
+    user = User.query.filter_by(username=current_user.username).first()
+    tasks = Task.query.filter_by(collaborate_id=user.collaborate).order_by(Task.priority.asc())
+    categories = Category.query.filter_by(user_id=user.id).all()
+    assign_tasks = Task.query.filter_by(assign_user=user.username).order_by(Task.priority.asc())
+
+    return render_template('collaboratetask.html', tasks=tasks, assign_tasks = assign_tasks, categories=categories)
 
 @app.route('/createcategory', methods = ['GET', 'POST'] )
 @login_required
@@ -224,8 +235,9 @@ def collaboratecreatecategory():
 def category(category_id):
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id, category_id=category_id).all()
+    assign_tasks = Task.query.filter_by(assign_user=user.username).all()
     categories = Category.query.filter_by(user_id=user.id).all()
-    return render_template('taskboard.html', tasks=tasks, categories=categories)
+    return render_template('taskboard.html', tasks=tasks, assign_tasks= assign_tasks, categories=categories)
 
 
 #@app.route('/assignuser', methods = ['GET','POST'])
