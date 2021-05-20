@@ -1,13 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Add Subtask</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.assignuser.label }}<br>
-            {{ form.assignuser(size=256) }}
-        </p>
-      <p>{{ form.submit() }}</p>
-    </form>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/formpage.css') }}">
+
+    <div class="form_page">
+        <h1>Assign User</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.assignuser.label }}<br>
+                {{ form.assignuser(size=40) }}
+            </p>
+          <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+   
 {% endblock %}

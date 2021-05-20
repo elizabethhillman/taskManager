@@ -1,4 +1,4 @@
-.profile{
+.form_page{
     background-color: white!important;
     width: 500px;
     height: 500px;
@@ -11,6 +11,9 @@
     box-shadow: 0 4px 8px 0 rgba(26, 183, 231, 0.466);
     transition: 0.3s; 
 }
-.profile:hover{
+.form_page:hover{
     box-shadow: 0 8px 16px 0 rgba(26, 183, 231, 0.6);
+}
+.message_flash{
+    color: red!important;
 }
