@@ -83,7 +83,9 @@ When you first open the website, first choose the sign in option and log in with
         tasks that are not assigned to them.
         
     12. Reminder for Task
-        - To ensure this works, 
+        - To ensure this works, we have set the reminder on the task in "taskboard". Also, we set the 
+        timer for reminder to send mail to user on the time and date that had been set. After, we set 
+        reminder it will redirect to "taskboard" when it done with set the reminder.
         
     13. Plan for Specific Day
         - To ensure this works, after navigating to the calendar, we added events for specific days and 
