@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>My Account</h1>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
 
-<div>
+<div class="profile">
+    <h1>My Account</h1>
     <p><strong>Username</strong>: {{ current_user.username}} </p>
     <p><strong>Email</strong>: {{ current_user.email}} </p>
     <p><a href="/changepassword">Change Password</p>

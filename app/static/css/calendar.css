@@ -1,0 +1,36 @@
+
+.calendarpage{
+    height: auto;
+    width: auto;
+    display: flex;
+    margin: 0;
+    background-color: rgba(228, 216, 216, 0.329)!important;
+
+}
+#calendar {
+    height: 800px;
+    width: 1000px;
+    margin: 40px 20px;
+    background-color: white!important;
+    box-shadow: 0 4px 8px 0 rgba(26, 183, 231, 0.466);
+    transition: 0.3s; 
+}
+#calendar:hover{
+    box-shadow: 0 8px 16px 0 rgba(26, 183, 231, 0.6);
+}
+.Add_Event{
+    height: 400px;
+    width: 400px;
+    margin: 40px 20px;
+    border-radius: 20px;
+    background-color: white!important;
+    box-shadow: 0 4px 8px 0 rgba(26, 183, 231, 0.466);
+    transition: 0.3s; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.Add_Event:hover{
+    box-shadow: 0 8px 16px 0 rgba(26, 183, 231, 0.6);
+}

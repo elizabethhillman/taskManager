@@ -1,19 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-    
-    <form action="" method="post" novalidate>
-        <h1>Log In</h1>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}
-        </p>
-        <p>{{ form.submit() }}</p>
-        <p><a href="/signup">Don't have an Account?</a></p>
-    </form>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login.css') }}">
+    <div class="login_page">
+
+        <form action="" method="post" novalidate>
+            <h1>Log In</h1>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="message_flash">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}
+            </p>
+            <p>{{ form.submit() }}</p>
+            <p><a href="/signup">Don't have an Account?</a></p>
+        </form>
+    </div>
 {% endblock %}

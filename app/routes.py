@@ -43,11 +43,8 @@ def login():
         # if no user found or password for user incorrect
         # user.check_password() is a method in the User class
         if user is None or not user.check_password(form.password.data):
-            return f'''<html><body>
-                        {form.username.data} Invalided username or password</b>
-                        <a href="/login">Login</a>
-                        </body>
-                        </html>'''
+            flash('Invalided username or password')
+            return redirect('/login')
         # let flask_login library know what user logged int
         # it also means that their password was correct
         login_user(user)

@@ -17,11 +17,11 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">S.I.T.E</a>
+              <a class="navbar-brand" href="/">S.I.T.E</a>
               <ul class="nav justify-content-end">
                 <li class="nav-item">
                   {% if not current_user.is_authenticated %}
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  <a class="nav-link active" aria-current="page" href="/">Home</a>
                   {% endif %}
                   {% if current_user.is_authenticated %}
                   <a class="nav-link active" aria-current="page" href="/profile">My Account</a>
@@ -62,15 +62,20 @@
           </nav>
         
         {% block content %}
-            {% if current_user.is_authenticated %}
-            <h1> Welcome, {{ current_user.username }}! </h1>
-            <p> Go to My Account to view you account details or change password. Go to My Taskboard to view your current taskboard. Or go to Sign Out to log out</p>
-            {% endif %}
-
-	    {% if not current_user.is_authenticated %}
-	    <h1> Welcome to S.I.T.E. </h1>
-	    <p> Select Sign in to either log in or create an account! </p>
-	    {% endif %}
+        <div class="welcome">
+          {% if current_user.is_authenticated %}
+          <h1> Welcome, <strong id ='user'> {{ current_user.username }}</strong> </h1>
+          <p> Go to <a href="/profile">My Account</a> to view you account details or change password.<br> 
+              Go to <a href="/taskboard">My Taskboard</a> to view your current taskboard. <br>
+              Go to <a href="/calendar">Calendar</a> to view your calendar
+          </p>
+          {% endif %}
+          {% if not current_user.is_authenticated %}
+	        <h1> Welcome to <strong id="user">S.I.T.E.</strong> </h1>
+	        <p> Select Sign in to either log in or create an account! </p>
+	        {% endif %}
+        </div>
+	    
         {% endblock %}
     </body>
 </html>
