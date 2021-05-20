@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-        <h1>Assign User</h1>
-        <form action="" methods="post" novalidate>
-                {{form.hidden_tag() }}
-                <p>
-                        {{ form.assignuser.label }}<br>
-                        {{ form.assignuser(size 65) }}
-                </p>
-              <p>{{ form.submit() }}</p>
-        </form>
+    <h1>Add Subtask</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.assignuser.label }}<br>
+            {{ form.assignuser(size=256) }}
+        </p>
+      <p>{{ form.submit() }}</p>
+    </form>
 {% endblock %}

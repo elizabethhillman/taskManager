@@ -12,7 +12,7 @@ from flask_login import login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignupForm, ChangePasswordForm, NewTask, EditTask, CreateCategory, Reminder, Addsubtask, Addcollaborator, AssignUser, AddEvent
 from werkzeug.security import check_password_hash
-from app.models import User, Post, Task, Category, Subtask, AssignedUser, Event
+from app.models import User, Post, Task, Category, Subtask, Event
 
 
 @app.route('/')
@@ -23,9 +23,10 @@ def index():
 def taskboard():
     user = User.query.filter_by(username=current_user.username).first()
     tasks = Task.query.filter_by(user_id=user.id, collaborate_id = None).all()
+    assign_tasks = Task.query.filter_by(assign_user=user.username).all()
     categories = Category.query.filter_by(user_id=user.id).all()
     subtask = Subtask.query.all()
-    return render_template('taskboard.html', tasks=tasks, categories=categories, subtasks=subtask)
+    return render_template('taskboard.html', tasks=tasks, categories=categories, subtasks=subtask, assign_tasks=assign_tasks)
 
 @app.route('/collaboratetaskboard',methods=['GET', 'POST'])
 def collaboratetaskboard():
@@ -318,14 +319,17 @@ def Collaborator():
         return redirect('/collaboratetaskboard')
     return render_template('collaborate.html', form=form)  
 
-@app.route('/assignuser', methods = ['GET','POST'])
+@app.route('/assignuser/<int:task_id>', methods = ['GET','POST'])
 @login_required
-def assignuser():
-    form =AssignUser()
-    user = User.query.filter_by(username=current_user.username).first()
-    tasks = Task.query.filter_by(user_id=user.id).all()
-    categories = Category.query.filter_by(user_id=user.id).all()
-    return render_template('assignuser.html', title= 'Assign User',form = form)
+def assignuser(task_id):
+    form = AssignUser()
+    if form.validate_on_submit():
+        user = User.query.filter_by(username=form.assignuser.data).first()
+        task = Task.query.get(task_id)
+        task.assign_user = user.username
+        db.session.commit()
+        return redirect('/collaboratetaskboard')
+    return render_template('assignuser.html', form = form)
 
 @app.route('/calendar', methods = ['GET','POST'])
 @login_required
