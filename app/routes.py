@@ -157,7 +157,7 @@ def collaboratenewtask():
         db.session.commit()
         print(task.user_id)
         return redirect('/collaboratetaskboard')
-    return render_template('addtask.html', title= 'Add task',form = form)
+    return render_template('collaborateaddtask.html', title= 'Add task',form = form)
 
 @app.route('/delete/<int:task_id>')
 @login_required
@@ -205,6 +205,18 @@ def createcategory():
         db.session.add(category)
         db.session.commit()
         return redirect('/addtask')
+    return render_template('addcategory.html', title= 'Add Category',form = form)
+
+@app.route('/collaboratecreatecategory', methods = ['GET', 'POST'] )
+@login_required
+def collaboratecreatecategory():
+    user = User.query.filter_by(username=current_user.username).first()
+    form = CreateCategory()
+    if form.validate_on_submit():
+        category = Category(category=form.addcategory.data, author=user)
+        db.session.add(category)
+        db.session.commit()
+        return redirect('/addcollaboratetask')
     return render_template('addcategory.html', title= 'Add Category',form = form)
 
 @app.route("/category/<int:category_id>", methods=['GET', 'POST'])
