@@ -1,0 +1,43 @@
+.task_page{
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+}
+.task{
+    height: 700px;
+    width: 700px;
+    margin: 40px 20px;
+    border-radius: 20px;
+    background-color: white!important;
+    box-shadow: 0 4px 8px 0 rgba(26, 183, 231, 0.466);
+    transition: 0.3s; 
+}
+.task:hover{
+    box-shadow: 0 8px 16px 0 rgba(26, 183, 231, 0.6);
+}
+.task h1{
+    text-align: center;
+}
+.colla{
+    height: 700px;
+    width: 700px;
+    margin: 40px 20px;
+    border-radius: 20px;
+    background-color: white!important;
+    box-shadow: 0 4px 8px 0 rgba(26, 183, 231, 0.466);
+    transition: 0.3s;   
+}
+.colla:hover{
+    box-shadow: 0 8px 16px 0 rgba(26, 183, 231, 0.6);
+}
+.colla h1{
+    text-align: center;  
+}
+.addtask{
+    margin: 10px;
+}
+#addcoll{
+    margin: 10px!important;
+}

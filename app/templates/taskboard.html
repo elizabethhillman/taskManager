@@ -3,46 +3,58 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/taskboard.css') }}">
     {% if current_user.is_authenticated %}
-            <div>
-                <h1>Task</h1>   
-                <nav>
-                    <ul>
-                        <li><a href="/priority">Sort by priority</a></li>
-                        <li>Category
-                            <ul>
-                                {% for category in categories %}
-                                <li><a href="/category/{{category.id}}">{{category.category}}</a></li>
-                                {% endfor %}
-                        </li>
-                    </ul>    
-                </nav>
-                {% for task in tasks %}
+    <div class="task_page">
+        <div class="task">
+            <h1>Task</h1>   
+            <nav>
                 <ul>
+                    <li><a href="/priority">Sort by priority</a></li>
+                    <li>Category
+                        <ul>
+                            {% for category in categories %}
+                            <li><a href="/category/{{category.id}}">{{category.category}}</a></li>
+                            {% endfor %}
+                    </li>
+                </ul>    
+            </nav>
+            {% for task in tasks %}
+            <ul>
                 <li>
-                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}})(Time: {{task.estimatehr}} hrs {{task.estimatemin}} mins) <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a> <a href="/addsubtask/{{task.id}}">Add subtask</a> <a href="/assignuser/{{task.id}}">Assign User</a>
+                    {{ task.content }} (Priority: {{task.priority}}) ({{task.category.category}})(Time: {{task.estimatehr}} hrs {{task.estimatemin}} mins <br> <a href= "/edittask/{{task.id}}">Edit</a>  <a href= "/delete/{{task.id}}"> Delete</a>  <a href= "/reminder/{{task.id}}">Set reminder</a> <a href="/addsubtask/{{task.id}}">Add subtask</a> <a href="/assignuser/{{task.id}}">Assign User</a>
                     <ul>
-                    
-                {% for subtask in task.subtask %}
-		<li>                    
-        	    {{subtask.subtask}}
-		</li>                     
-  		 {% endfor %}    
+                
+                        {% for subtask in task.subtask %}
+                        <li>                    
+                            {{subtask.subtask}}
+                        </li>                     
+                          {% endfor %}    
                     </ul>
                 </li>
-                </ul>
-                {% endfor %}
-            <br>
-            <h1>Collaborate Task</h1>
-                {% for assign_task in assign_tasks %}
-                <ul>
-                    <li>
-                        {{ assign_task.content }} (Priority: {{assign_task.priority}}) ({{assign_task.category.category}})(Time: {{assign_task.estimatehr}} hrs {{assign_task.estimatemin}} mins) <a href= "/edittask/{{assign_task.id}}">Edit</a>  <a href= "/delete/{{assign_task.id}}"> Delete</a>  <a href= "/reminder/{{assign_task.id}}">Set reminder</a> <a href="/addsubtask/{{assign_task.id}}">Add subtask</a>
-                     </li>   
-                 </ul> 
-                 {% endfor %}  
-                <div>Add a new todo item: 
+            </ul>
+            {% endfor %}
+            <div class="addtask">
+               <strong>Add a new todo item:</strong>  
                 <a href="/addtask"> add</a>
-                </div> 
-            </div>
+            </div> 
+        </div>
+
+        <div class="colla">
+            <h1>Collaborate Task</h1>
+            {% for assign_task in assign_tasks %}
+            <ul>
+                <li>
+                    {{ assign_task.content }} (Priority: {{assign_task.priority}}) ({{assign_task.category.category}})(Time: {{assign_task.estimatehr}} hrs {{assign_task.estimatemin}} mins) <br> <a href= "/edittask/{{assign_task.id}}">Edit</a>  <a href= "/delete/{{assign_task.id}}"> Delete</a>  <a href= "/reminder/{{assign_task.id}}">Set reminder</a> <a href="/addsubtask/{{assign_task.id}}">Add subtask</a>
+                </li>   
+            </ul> 
+            {% endfor %} 
+            <div class="addtask">
+                <strong>Add a new todo item:</strong>  
+                <a href="/addtask"> add</a>
+            </div>  
+        </div>
+
+        
+    </div>
+
     {% endif %}
 {% endblock %}
