@@ -86,7 +86,8 @@ When you first open the website, first choose the sign in option and log in with
         - To ensure this works, 
         
     13. Plan for Specific Day
-        - To ensure this works, 
+        - To ensure this works, after navigating to the calendar, we added events for specific days and 
+        checked that the events appeared on the assigned dates.
         
     14. Log in
         - To ensure this works, after registering a new user, we made sure that the user could view
